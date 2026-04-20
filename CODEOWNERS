@@ -1,0 +1,30 @@
+# BSVA AI Structure — CODEOWNERS
+#
+# DevRel owns the repo by default. Each department has write authority
+# over its own folder. All PRs require review from at least one code owner.
+#
+# Syntax: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# ── default owner: DevRel ──────────────────────────────────────────────
+*                                   @bsva/devrel
+
+# ── global: requires DevRel + security review ──────────────────────────
+/global/                            @bsva/devrel @bsva/security
+/security/                          @bsva/devrel @bsva/security
+/guides/for-humans/                 @bsva/devrel @bsva/security
+/guides/for-claude/                 @bsva/devrel @bsva/security
+/guides/visuals/                    @bsva/devrel
+
+# ── departments: each owns itself ──────────────────────────────────────
+/departments/developer-relations/   @bsva/devrel
+/departments/technology/            @bsva/technology
+/departments/education/             @bsva/education
+/departments/operations/            @bsva/operations
+/departments/operations/biz-dev/    @bsva/biz-dev
+/departments/operations/marketing/  @bsva/marketing
+/departments/operations/legal/      @bsva/legal @bsva/security
+/departments/operations/exec/       @bsva/exec @bsva/security
+
+# ── install scripts: require DevRel + security review ──────────────────
+/install.sh                         @bsva/devrel @bsva/security
+/install.ps1                        @bsva/devrel @bsva/security

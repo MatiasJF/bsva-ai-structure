@@ -1,0 +1,22 @@
+{
+  "name": "bsva-sdk-example",
+  "version": "0.1.0",
+  "description": "A minimal BSV SDK example scaffolded from BSVA's DevRel template.",
+  "main": "dist/main.js",
+  "scripts": {
+    "start": "ts-node src/main.ts",
+    "build": "tsc",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": ["bsv", "blockchain", "example"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@bsv/sdk": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "ts-node": "^10.9.0",
+    "typescript": "^5.0.0"
+  }
+}

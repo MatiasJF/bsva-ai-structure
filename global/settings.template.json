@@ -1,0 +1,58 @@
+{
+  "_comment": "BSVA base settings template. Merge relevant keys into your ~/.claude/settings.json. Do not blindly overwrite your existing settings — the installer writes this file to ~/.claude/settings.bsva-template.json for you to review.",
+
+  "permissions": {
+    "allow": [
+      "Bash(git status)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(git show:*)",
+      "Bash(ls:*)",
+      "Bash(pwd)",
+      "Bash(node --version)",
+      "Bash(npm --version)",
+      "Bash(pnpm --version)",
+      "Read(~/bsva-ai-structure/**)",
+      "mcp__nestr__nestr_get_me",
+      "mcp__nestr__nestr_help",
+      "mcp__nestr__nestr_list_workspaces",
+      "mcp__nestr__nestr_search",
+      "mcp__whatsonchain__woc_health",
+      "mcp__whatsonchain__woc_chain_info",
+      "mcp__bsv-academy__bsv_list_courses",
+      "mcp__bsv-academy__bsv_search"
+    ],
+    "deny": [
+      "Bash(rm -rf:*)",
+      "Bash(git push --force:*)",
+      "Bash(git push -f:*)",
+      "Bash(curl:* | sh)",
+      "Bash(curl:* | bash)",
+      "Read(~/.ssh/**)",
+      "Read(~/.gnupg/**)",
+      "Read(/etc/**)"
+    ]
+  },
+
+  "env": {
+    "BSVA_REPO": "~/bsva-ai-structure",
+    "BSVA_CLASSIFICATION_DEFAULT": "Internal"
+  },
+
+  "hooks": {
+    "_comment": "Example hooks. Uncomment once you know what you want. See guides/for-humans/04-terminal-cli-efficiency.md.",
+    "UserPromptSubmit": [],
+    "PreToolUse": [],
+    "PostToolUse": [],
+    "Stop": []
+  },
+
+  "model": "claude-opus-4-7",
+
+  "_notes": [
+    "Keep your personal deny list STRICTER than this template, not looser.",
+    "Never allow-list a command that writes outside the repo / your project folder.",
+    "Never commit your ~/.claude/settings.json to a shared repo — it is personal.",
+    "Secrets (API keys, tokens) belong in a secrets manager, not in settings.json."
+  ]
+}

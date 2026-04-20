@@ -1,0 +1,87 @@
+# 02 — First hour setup
+
+Target: you are productive in Claude within one hour, with BSVA standards applied.
+
+---
+
+## Step 1 — Install Claude Code (15 min)
+
+### If you are an engineer / technical user
+```bash
+# macOS / Linux
+brew install anthropic/tap/claude
+# or
+npm i -g @anthropic-ai/claude-code
+```
+
+### If you are non-technical
+Download the Desktop app: https://claude.com/claude-code → download for Mac / Windows.
+
+Log in with your **Anthropic work account** (not personal). If BSVA has not provisioned your account, ping DevRel in Nestr.
+
+---
+
+## Step 2 — Clone and install the BSVA structure (10 min)
+
+```bash
+git clone git@github.com:MatiasJF/bsva-ai-structure.git ~/bsva-ai-structure
+cd ~/bsva-ai-structure
+./install.sh       # macOS / Linux
+./install.ps1      # Windows
+```
+
+The installer will:
+- copy global skills and MCPs to `~/.claude/`
+- install the base `CLAUDE.md` at `~/.claude/CLAUDE.md`
+- ask which department you belong to
+- back up anything it replaces to `~/.claude/.bsva-backup/`
+
+---
+
+## Step 3 — Add your Nestr credentials (10 min)
+
+BSVA runs on Nestr. Your Claude needs to talk to it.
+
+1. Open `~/.claude/mcp.bsva-template.json` (the installer put it there).
+2. Replace `<your-nestr-api-key>` with your key from Nestr → Settings → API.
+3. Merge the `mcpServers` block into your real MCP config (CLI: `~/.claude/mcp.json`; Desktop: Settings → MCP).
+4. Restart Claude.
+
+---
+
+## Step 4 — Verify (5 min)
+
+Open Claude and ask:
+
+> "Use the Nestr MCP to tell me who I am and which workspace I am in."
+
+You should see your name, role, and workspace. If you see an auth error, your API key did not land in the right place.
+
+---
+
+## Step 5 — Read the three flagship guides (15 min)
+
+**Do not skip this step.** These are the three files that change how you use Claude at work:
+
+1. `07-BEFORE-YOU-PASTE.md` — pre-flight checklist
+2. `08-what-to-send.md` — green-light examples
+3. `09-what-NOT-to-send.md` — red-light examples
+
+---
+
+## Step 6 — Link your first project (5 min)
+
+When you start a new project / folder, run:
+
+```bash
+cd ~/my-project
+bsva-link              # (provided by install.sh)
+```
+
+This symlinks your department's `CLAUDE.md` into the project so Claude reads it automatically. If `bsva-link` is not on your PATH, copy `departments/<your-dept>/CLAUDE.md` into your project root as `CLAUDE.md`.
+
+---
+
+## You're done
+
+Next guide: `03-desktop-app-efficiency.md` (non-tech) or `04-terminal-cli-efficiency.md` (engineers).

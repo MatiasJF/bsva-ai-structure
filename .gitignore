@@ -1,0 +1,33 @@
+# macOS
+.DS_Store
+._*
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# editors
+.vscode/
+.idea/
+*.swp
+*~
+
+# installer runtime
+.bsva-backup/
+.bsva-department
+
+# secrets
+.env
+.env.*
+*.key
+*.pem
+secrets/
+
+# rendered diagram exports — commit intentionally, not automatically
+# (remove the next line if you want to commit PNG/SVG exports)
+guides/visuals/exports/*.png
+guides/visuals/exports/*.svg
+
+# logs / tmp
+*.log
+.tmp/

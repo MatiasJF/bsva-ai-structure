@@ -1,0 +1,44 @@
+{
+  "_comment": "BSVA global MCP template. The installer copies this to ~/.claude/mcp.bsva-template.json. Merge into your MCP config and add your own credentials where indicated.",
+
+  "mcpServers": {
+    "nestr": {
+      "_comment": "Nestr — BSVA's self-organization platform (Holacracy/Sociocracy). Tensions, circles, roles.",
+      "command": "npx",
+      "args": ["-y", "@nestr/mcp-server@latest"],
+      "env": {
+        "NESTR_API_KEY": "<your-nestr-api-key>",
+        "NESTR_WORKSPACE": "<your-workspace-slug>"
+      }
+    },
+
+    "simple-mcp": {
+      "_comment": "BSV scaffolding — wallet setup, DIDs, payment handlers, token handlers, credential issuers, inscription handlers, Next.js config.",
+      "command": "npx",
+      "args": ["-y", "@bsv/simple-mcp@latest"],
+      "env": {}
+    },
+
+    "whatsonchain": {
+      "_comment": "On-chain BSV data — addresses, transactions, blocks, UTXOs, mempool, exchange rate.",
+      "command": "npx",
+      "args": ["-y", "@bsv/whatsonchain-mcp@latest"],
+      "env": {
+        "WOC_API_KEY": "<optional-for-higher-rate-limits>"
+      }
+    },
+
+    "bsv-academy": {
+      "_comment": "BSV Academy knowledge base — courses, concepts, pages, search.",
+      "command": "npx",
+      "args": ["-y", "@bsv/academy-mcp@latest"],
+      "env": {}
+    }
+  },
+
+  "_notes": [
+    "If any of these npm packages do not exist yet, the BSVA DevRel team will publish them. Until then, treat this file as the intended config.",
+    "Never commit a completed copy of this file to a public repo — it will contain API keys.",
+    "Department-specific MCPs live under departments/<dept>/mcps/ and are appended, not merged, into your personal MCP config."
+  ]
+}
