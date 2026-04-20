@@ -7,7 +7,7 @@ How a new MCP (tool connection) enters the BSVA stack. MCPs are higher-risk than
 ```mermaid
 flowchart TD
   need([My department / role<br/>needs tool access<br/>Claude can't currently reach]):::start
-  existing{Does an existing MCP<br/>(global or another dept)<br/>already cover this?}
+  existing{"Does an existing MCP<br/>(global or another dept)<br/>already cover this?"}
   useExisting[Use it, with your own<br/>scoped credentials]:::action
   findMCP{A public MCP server<br/>exists for this tool?}
   propose[Draft proposal:<br/>what tool, why, scope,<br/>credentials, classification]:::action

@@ -12,7 +12,7 @@ flowchart TD
   mineOwn{Did I write it,<br/>about my own work?}
   third{Names / $ / NDA /<br/>contract / unreleased?}
   redact{Can I redact enough<br/>to anonymize?}
-  restricted{Private keys · HR ·<br/>legal · board / M&A?}
+  restricted{"Private keys · HR ·<br/>legal · board / M&A?"}
 
   greenGo([🟢 Public — go]):::green
   greenInt([🟡 Internal — go<br/>Desktop / CLI only]):::yellow

@@ -14,7 +14,7 @@ flowchart TD
   init[Init git + make first commit<br/>'scaffold from template-name']:::action
   linkClaude["Link department CLAUDE.md:<br/>ln -s ../bsva-ai-structure/departments/&lt;dept&gt;/CLAUDE.md CLAUDE.md<br/>(or copy if you need to customize)"]:::action
   projClaude{Project needs its own<br/>CLAUDE.md additions?}
-  extend[Create project CLAUDE.md that<br/>ADDS to (not replaces)<br/>the department one]:::action
+  extend["Create project CLAUDE.md that<br/>ADDS to (not replaces)<br/>the department one"]:::action
   verify[Open Claude in the folder<br/>ask: 'what is this project and<br/>how should I help?']:::action
   ok{Claude responds with<br/>department-appropriate context?}
   debug[Fix: check CLAUDE.md layering,<br/>department CLAUDE.md reachable,<br/>MCPs configured]:::action
