@@ -57,6 +57,18 @@ These functions often handle Confidential or Restricted content by default. The 
 
 ---
 
+## Workflow
+
+Every Operations session follows the BSVA cycle (`<repo>/workflow/`), **tightened** per Operations norms. Read `departments/operations/workflow/` first, including `classify-before-paste.md` and `placeholders-and-anonymizer.md`.
+
+Each sub-section has its own workflow folder with playbooks:
+- `biz-dev/workflow/` — lead lists, partner posture, proposal shells.
+- `marketing/workflow/` — campaigns, events, PR response, brand-voice linter.
+- `legal/workflow/` — public research only.
+- `exec/workflow/` — public-audience drafts, brief builder, Restricted session rules.
+
+**The Operations rule**: anonymize-first. The `anonymizer` skill runs at the start of every Operations session. No unannounced partner names enter any session.
+
 ## Templates
 
 See `templates/`. Sub-sections may have their own templates in `biz-dev/templates/`, etc.

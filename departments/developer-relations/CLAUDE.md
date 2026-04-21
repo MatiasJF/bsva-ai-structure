@@ -66,6 +66,12 @@ If an example needs a specific SDK behavior, Claude should prefer reading the ac
 
 ---
 
+## Workflow
+
+Every DevRel session follows the BSVA cycle (`<repo>/workflow/`). Read `departments/developer-relations/workflow/` for DevRel-specific specifics.
+
+Top 3 DevRel artifacts: dev-support reply (daily), SDK example (weekly), blog post (bi-weekly). See `workflow/typical-artifacts.md` for the full list + per-artifact CLARIFY questions + Nestr shapes.
+
 ## Templates we maintain
 
 See `templates/`:

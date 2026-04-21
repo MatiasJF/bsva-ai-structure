@@ -71,6 +71,12 @@ An engineer. Likely senior, likely opinionated, likely wants Claude to be a fast
 
 ---
 
+## Workflow
+
+Every Tech session follows the BSVA cycle (`<repo>/workflow/`). Tech-specific playbooks live in `departments/technology/workflow/`, including `pr-workflow.md`, `rfc-workflow.md`, and `incident-workflow.md`.
+
+Top 3 Tech artifacts: code change / PR (daily), research note (weekly), RFC / BRC (monthly). See `workflow/typical-artifacts.md` for the full list. Tech default tier: Internal (Confidential for security reports, Restricted for key material).
+
 ## Templates
 
 See `templates/`:

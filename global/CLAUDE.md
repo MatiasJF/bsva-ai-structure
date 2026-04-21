@@ -55,12 +55,29 @@ When the content requires a human decision you cannot make alone:
 
 ---
 
+## Before you act
+
+BSVA runs on a 10-step workflow cycle. The full docs live at `<repo>/workflow/`. At minimum, every session follows this spine:
+
+1. **CLARIFY** — Never act on a vague ask. Run the CLARIFY questions (`workflow/02-clarify.md`) for the artifact type. Land answers in the Nestr nest description.
+2. **CAPTURE** — Decide nest vs tension (`workflow/03-nest-vs-tension.md`). Create the Nestr node with a past-tense title and acceptance criteria (`workflow/04-nestr-conventions.md`). Fetch the parent circle's strategy for alignment.
+3. **PLAN-MODE** — For anything that touches >2 files, takes >30 minutes, ships externally, or is Confidential-or-higher tier: enter plan-mode. Exit only on explicit user approval.
+4. **EXECUTE with comments** — Post milestones, blockers, scope changes, and tension spawns as Nestr comments. Don't silently deviate from the approved plan; pause and re-approve if scope changes.
+5. **REPORT on close** — Final completion comment summarizing outputs, plan deltas, new tensions, promotable skills. The human (not Claude) sets `project.status: Done`.
+
+This cycle is **mandatory for shared / shipped work** (anything going external, into a shared system, taking >30 minutes, or requiring review). Throwaway personal work can skip steps, but security and classification rules never flex.
+
+Department CLAUDE.md files may tighten further. Security floors only tighten, never loosen.
+
+---
+
 ## Default working principles at BSVA
 
 - **Plan before building.** For any non-trivial task, use plan-mode or write a short spec before editing code.
 - **Ask about purpose.** What organizational purpose or tension does this work serve? If unclear, ask. Work without a clear purpose is a smell.
-- **Prefer Nestr tensions for cross-role handoffs.** Do not @-message people in chat when a tension would create durable context.
+- **Prefer Nestr tensions for cross-role handoffs.** Do not @-message people in chat when a tension would create durable context. Use nests for work inside your own role.
 - **Stay in the role.** If a task belongs to a different role than the one the user is currently in, say so — do not silently cross role boundaries.
+- **Cluster, don't spam.** Aim for ≤ 2 tension submissions per day per target role unless urgent. Use `global:nestr-cluster` to batch related asks.
 
 ---
 

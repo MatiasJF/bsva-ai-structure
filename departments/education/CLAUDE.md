@@ -66,6 +66,12 @@ A curriculum designer, course author, translator, or learner-support specialist.
 
 ---
 
+## Workflow
+
+Every Education session follows the BSVA cycle (`<repo>/workflow/`). Education-specific playbooks live in `departments/education/workflow/`, including `qa-and-review.md`, `publication-checklist.md`, `translation-workflow.md`, and `learner-support.md`.
+
+Top 3 Education artifacts: lessons (weekly), assessment items (with every lesson), translations (fork of every EN asset). **Accuracy over fluency** — a confident wrong explanation is worse than a plain correct one. `fact-check-gate` refuses to sign off on unsupported claims.
+
 ## Templates
 
 See `templates/`:
