@@ -48,6 +48,43 @@ cd ~/bsva-ai-structure
 ```
 
 <details>
+<summary><b>Where should it live? Will it break anything?</b></summary>
+
+**Good places:** any user-writable folder — `~/bsva-ai-structure`, `~/Code/bsva-ai-structure`, `~/work/bsva/ai-structure`. The scripts resolve absolute paths at install time, so location doesn't matter.
+
+**Avoid:**
+
+| Location | Why not |
+|---|---|
+| `/usr/local`, `/opt`, `C:\Program Files` | needs admin; no benefit |
+| iCloud Drive, Dropbox, OneDrive, Google Drive | sync conflicts corrupt git |
+| Paths with spaces | bash tooling sometimes trips |
+| Network shares | slow, breaks when disconnected |
+
+**What the installer touches on your machine** — all under `~/.claude/`, all backed up before any change:
+
+| Path | What happens | Safe? |
+|---|---|---|
+| `~/.claude/CLAUDE.md` | backed up → BSVA version installed | ✓ backup |
+| `~/.claude/skills/<bsva-names>/` | BSVA-named skills backed up + replaced; other skills untouched | ✓ backup + others preserved |
+| `~/.claude/mcp.bsva-template.json` | new template file (you merge manually) | — new file |
+| `~/.claude/settings.bsva-template.json` | new template file | — new file |
+| `~/.claude/settings.json` | **only if you say Yes** to the hook merge: backed up → BSVA SessionStart hook added; your other settings preserved | ✓ backup + idempotent |
+| `~/.claude/.bsva-department`, `.bsva-welcome-shown` | small flag files | — new files |
+
+**What the installer NEVER touches:**
+- Your projects, code, git repos
+- Your `~/.claude/mcp.json` (you merge the template yourself)
+- SSH / GPG keys (explicitly denied in the settings template)
+- System folders — `/etc`, `/usr`, `C:\Windows`, etc.
+
+**Backup location:** `~/.claude/.bsva-backup/<timestamp>/`. To restore anything, copy back from there.
+
+**Your actual BSVA projects** live wherever you already keep code (`~/projects/`, `~/Code/`, …). The install at `~/bsva-ai-structure/` is a reference repo and toolkit; individual projects symlink or copy `departments/<your-dept>/CLAUDE.md` into themselves.
+
+</details>
+
+<details>
 <summary><b>Windows PowerShell</b> — same idea, different path separator</summary>
 
 ```powershell
