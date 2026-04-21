@@ -1,60 +1,72 @@
-<span class="section-badge">9 / 13 · First session</span>
-<h1>Your first real session</h1>
-<p class="lede">Walk through the cycle once with a concrete example. Copy the prompts, paste them into Claude, and watch the discipline pay off.</p>
+<section class="hero stagger">
+  <div class="hero-eyebrow"><span class="hero-eyebrow-dot"></span> 9 / 13 · Try it</div>
+  <h1>Your first real session.</h1>
+  <p class="lede">Pick a real task (1–2 hours, not Restricted). Copy these prompts. Watch the cycle pay off.</p>
+</section>
 
-<h2>Pick a small real task</h2>
-<p>For your first session, pick something <strong>you'd actually do this week</strong>. It should be:</p>
-<ul>
-  <li><strong>Shared</strong> (not throwaway scratch) — so the cycle applies.</li>
-  <li><strong>Contained</strong> (1–2 hours of work) — so you can close the loop today.</li>
-  <li><strong>Not Restricted</strong> — so you can complete it without legal/exec escalation.</li>
-</ul>
+<h2>Step 1 — Start Claude in the project folder</h2>
+<div class="prompt-card">
+  <span class="prompt-label">shell</span>
+  <span id="step-1">cd ~/projects/my-new-task
+claude</span>
+  <button class="copy-btn" data-copy="#step-1">Copy</button>
+</div>
 
-<p>Example: writing a short blog post, drafting a lesson outline, refactoring a small internal tool, building a lead list for a specific vertical.</p>
+<h2>Step 2 — Open with a grounding prompt</h2>
+<p class="muted small">Describe the desire, don't jump to "write me X".</p>
+<div class="prompt-card">
+  <span class="prompt-label">prompt</span>
+  <span id="step-2">I want to [your task, one sentence]. Before we start, walk me through a CLARIFY round — what do you need from me?</span>
+  <button class="copy-btn" data-copy="#step-2">Copy</button>
+</div>
 
-<h2>Step-by-step</h2>
+<h2>Step 3 — Let Claude propose the Nestr capture</h2>
+<div class="prompt-card">
+  <span class="prompt-label">prompt</span>
+  <span id="step-3">Good. Now propose the Nestr node — nest or tension? Show me the title, acceptance criteria, and labels before creating.</span>
+  <button class="copy-btn" data-copy="#step-3">Copy</button>
+</div>
 
-<h3>Step 1 — Start Claude in the project folder</h3>
-<pre><code id="step-1">cd ~/projects/my-new-task
-claude</code><button class="btn btn-secondary copy-btn" data-copy="#step-1">Copy</button></pre>
+<h2>Step 4 — Plan-mode</h2>
+<div class="prompt-card">
+  <span class="prompt-label">prompt</span>
+  <span id="step-4">Enter plan-mode and draft the execution plan. Reference the nest ID.</span>
+  <button class="copy-btn" data-copy="#step-4">Copy</button>
+</div>
+<p class="muted small">Or press <kbd style="padding:2px 7px;background:var(--bg-card);border:1px solid var(--border);border-radius:5px;font-size:11px">shift</kbd> + <kbd style="padding:2px 7px;background:var(--bg-card);border:1px solid var(--border);border-radius:5px;font-size:11px">tab</kbd> to toggle plan-mode directly.</p>
 
-<h3>Step 2 — Open with a grounding prompt</h3>
-<p>Tell Claude what you want to do. Don't jump to "write me X" — describe the desire.</p>
-<pre><code id="step-2">I want to [your task, one sentence]. Before we start, walk me through a CLARIFY round — what do you need from me?</code><button class="btn btn-secondary copy-btn" data-copy="#step-2">Copy</button></pre>
-<p>Claude invokes the <code>clarify</code> skill. It asks you the universal 5 plus artifact-specific extras. <strong>Answer them all in one batched reply.</strong></p>
+<h2>Step 5–6 — Discuss + approve</h2>
+<p class="muted">Read the plan. Push back on anything. Iterate. When ready:</p>
+<div class="prompt-card">
+  <span class="prompt-label">prompt</span>
+  <span id="step-6">Approved. Go.</span>
+  <button class="copy-btn" data-copy="#step-6">Copy</button>
+</div>
 
-<h3>Step 3 — Let Claude propose the Nestr capture</h3>
-<pre><code id="step-3">Good. Now propose the Nestr node — nest or tension? Show me the title, acceptance criteria, and labels before creating.</code><button class="btn btn-secondary copy-btn" data-copy="#step-3">Copy</button></pre>
-<p>Claude runs <code>tension-or-nest</code>. Review what it proposes. If it looks right, say "go" — Claude creates the node via the Nestr MCP and returns the ID.</p>
+<h2>Step 7–8 — Claude scaffolds + executes</h2>
+<p class="muted">Milestone comments post to the Nestr nest. Scope changes pause and re-approve.</p>
 
-<h3>Step 4 — Enter plan-mode</h3>
-<pre><code id="step-4">Now enter plan-mode and draft the execution plan. Reference the nest ID.</code><button class="btn btn-secondary copy-btn" data-copy="#step-4">Copy</button></pre>
-<p>Or press <kbd>shift+tab</kbd> in the prompt. Claude drafts a plan with files, approach, dependencies, estimate, risks.</p>
+<h2>Step 9 — Report on close</h2>
+<div class="prompt-card">
+  <span class="prompt-label">prompt</span>
+  <span id="step-9">Work is done. Write the REPORT comment on the Nestr nest — outputs, plan deltas, any new tensions spawned, promotable learnings.</span>
+  <button class="copy-btn" data-copy="#step-9">Copy</button>
+</div>
 
-<h3>Step 5 — Push back</h3>
-<p>Read the plan. Push back on anything. Trim scope. Identify dependencies. Iterate for as many rounds as needed.</p>
+<h2>Step 10 — You close the loop</h2>
+<p class="muted">You (not Claude) review acceptance criteria. If met, set <code>project.status: Done</code>.</p>
 
-<h3>Step 6 — Approve explicitly</h3>
-<pre><code id="step-6">Approved. Go.</code><button class="btn btn-secondary copy-btn" data-copy="#step-6">Copy</button></pre>
+<div class="callout callout--ok">
+  <div class="callout-title">What you should feel afterwards</div>
+  <ul>
+    <li>Mild friction in CLARIFY — gone by week two.</li>
+    <li>Surprise that plan-mode caught a scope issue.</li>
+    <li>A well-structured Nestr nest you can re-use as a template.</li>
+    <li>A prompt you re-typed — a candidate for a skill.</li>
+  </ul>
+</div>
 
-<h3>Step 7–8 — Claude scaffolds + executes</h3>
-<p>Claude copies the right template, inits git, starts working. Post progress comments to the Nestr nest at each milestone.</p>
-
-<h3>Step 9 — Report on close</h3>
-<pre><code id="step-9">Work is done. Write the REPORT comment on the Nestr nest — outputs, plan deltas, any new tensions spawned, promotable learnings.</code><button class="btn btn-secondary copy-btn" data-copy="#step-9">Copy</button></pre>
-
-<h3>Step 10 — Close the loop</h3>
-<p>You (not Claude) review acceptance criteria. If met, set <code>project.status: Done</code>, <code>completed: true</code>. Congratulations — you just ran a full cycle.</p>
-
-<h2>What you should feel afterwards</h2>
-<ul>
-  <li>Mild friction in the first 2 steps (CLARIFY feels slow) — that disappears by week two.</li>
-  <li>Surprise that plan-mode caught a scope issue.</li>
-  <li>The Nestr nest has a nicely structured description you can re-use as a template later.</li>
-  <li>You saved a prompt you re-typed. Candidate for a skill — see the retro file in the repo.</li>
-</ul>
-
-<div class="callout">
+<div class="callout callout--warn">
   <div class="callout-title">If something slipped</div>
-  <p>If you realize you pasted something you shouldn't have, or the reply included a detail that should have been Confidential, go straight to <a href="../security/incident-response.md">security/incident-response.md</a>. Blameless reporting is how BSVA stays safe.</p>
+  <p>If you realize you pasted something you shouldn't have, go straight to <a href="../security/incident-response.md">security/incident-response.md</a>. Blameless reporting keeps BSVA safe.</p>
 </div>

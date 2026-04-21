@@ -1,72 +1,99 @@
-<span class="section-badge">8 / 13 · Education / BSV Academy</span>
-<h1>Education playbook</h1>
-<p class="lede">You ship lessons, assessments, translations, learner-support replies, and course modules. Default tier: <span style="color: var(--tier-internal); font-weight: 600;">Internal</span> drafts → <span style="color: var(--tier-public); font-weight: 600;">Public</span> on publish. Learner data: <span style="color: var(--tier-confidential); font-weight: 600;">Confidential</span> or <span style="color: var(--tier-restricted); font-weight: 600;">Restricted</span> (minors).</p>
+<section class="hero stagger">
+  <div class="hero-eyebrow"><span class="hero-eyebrow-dot"></span> 8 / 13 · Education / BSV Academy</div>
+  <h1>Education playbook.</h1>
+  <p class="lede">Lessons, assessments, translations, learner support. Accuracy over fluency — one misstated claim misleads thousands.</p>
+  <div class="mt-8">
+    <span class="dept-tier-strip"><span class="dot i"></span>Internal drafts</span>
+    <span class="dept-tier-strip"><span class="dot p"></span>Public on publish</span>
+    <span class="dept-tier-strip"><span class="dot c"></span>Confidential (learner data)</span>
+    <span class="dept-tier-strip"><span class="dot r"></span>Restricted (minors)</span>
+  </div>
+</section>
 
-<h2>Your top 3 artifacts</h2>
-<table style="width: 100%; border-collapse: collapse; margin: 12px 0 24px;">
-  <thead>
-    <tr style="border-bottom: 1px solid var(--border);">
-      <th style="text-align: left; padding: 8px;">Artifact</th>
-      <th style="text-align: left; padding: 8px;">Cadence</th>
-      <th style="text-align: left; padding: 8px;">Top skills</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr style="border-bottom: 1px solid var(--border);">
-      <td style="padding: 8px;"><strong>Lesson</strong></td>
-      <td style="padding: 8px;">Weekly</td>
-      <td style="padding: 8px;"><code>lesson-outline-builder</code>, <code>academy-term-linker</code>, <code>reading-level-checker</code></td>
-    </tr>
-    <tr style="border-bottom: 1px solid var(--border);">
-      <td style="padding: 8px;"><strong>Assessment item</strong></td>
-      <td style="padding: 8px;">With every lesson</td>
-      <td style="padding: 8px;"><code>quiz-generator</code></td>
-    </tr>
-    <tr>
-      <td style="padding: 8px;"><strong>Translation</strong></td>
-      <td style="padding: 8px;">Per published EN asset</td>
-      <td style="padding: 8px;">(native reviewer tension + <code>academy-term-linker</code>)</td>
-    </tr>
-  </tbody>
-</table>
-
-<h2>Key skills (installed for Education)</h2>
-<ul>
-  <li><code>lesson-outline-builder</code> — enforces the pedagogy gate: audience, prerequisites, 3–5 verb-led objectives, assessment strategy. Refuses to expand without them.</li>
-  <li><code>quiz-generator</code> — items whose answers quote the lesson verbatim; distractors keyed to plausible misconceptions.</li>
-  <li><code>reading-level-checker</code> — Flesch-Kincaid + jargon density + simplification suggestions.</li>
-  <li><code>academy-term-linker</code> — looks up every term via <code>bsv_get_concepts</code>; inserts canonical links.</li>
-  <li><code>learner-support-drafter</code> — drafts replies with <code>anonymizer</code> auto-run. Never sends.</li>
-</ul>
-
-<h2>Education's motto</h2>
-<div class="callout">
-  <div class="callout-title">Accuracy over fluency</div>
-  <p>A confident wrong explanation is worse than a plain correct one. Lessons outlive their authors — they reach thousands of learners who can't easily evaluate our claims. The <code>fact-check-gate</code> refusing to sign off on unsupported claims is a <strong>feature</strong>.</p>
+<h2>Your top artifacts</h2>
+<div class="artifacts stagger">
+  <div class="artifact">
+    <div class="artifact-num">1</div>
+    <div>
+      <div class="artifact-name">Lesson</div>
+      <div class="artifact-meta">Single concept, 500–2000 words + CfU</div>
+      <div class="chip-row">
+        <span class="chip">lesson-outline-builder</span>
+        <span class="chip">academy-term-linker</span>
+        <span class="chip">reading-level-checker</span>
+      </div>
+    </div>
+    <div class="artifact-cadence">Weekly</div>
+  </div>
+  <div class="artifact">
+    <div class="artifact-num">2</div>
+    <div>
+      <div class="artifact-name">Assessment bank</div>
+      <div class="artifact-meta">MCQ / short-answer / code-read</div>
+      <div class="chip-row"><span class="chip">quiz-generator</span></div>
+    </div>
+    <div class="artifact-cadence">Per lesson</div>
+  </div>
+  <div class="artifact">
+    <div class="artifact-num">3</div>
+    <div>
+      <div class="artifact-name">Translation</div>
+      <div class="artifact-meta">EN → ES / ZH / PT</div>
+      <div class="chip-row"><span class="chip">academy-term-linker</span></div>
+    </div>
+    <div class="artifact-cadence">Per published EN asset</div>
+  </div>
+  <div class="artifact">
+    <div class="artifact-num">4</div>
+    <div>
+      <div class="artifact-name">Learner-support reply</div>
+      <div class="artifact-meta">PII redacted — never sent by Claude</div>
+      <div class="chip-row">
+        <span class="chip">learner-support-drafter</span>
+        <span class="chip">anonymizer</span>
+      </div>
+    </div>
+    <div class="artifact-cadence">Daily</div>
+  </div>
+  <div class="artifact">
+    <div class="artifact-num">5</div>
+    <div>
+      <div class="artifact-name">Course module</div>
+      <div class="artifact-meta">Multi-lesson unit</div>
+    </div>
+    <div class="artifact-cadence">Monthly</div>
+  </div>
 </div>
 
-<h2>Education-specific rules</h2>
-<div class="callout callout--warn">
-  <ul style="margin: 0;">
-    <li><strong>Never</strong> paste identifiable learner submissions. Run <code>anonymizer</code> first.</li>
-    <li><strong>Never</strong> process minors' data. Escalate to Education Lead + Legal.</li>
-    <li><strong>Never</strong> publish a translation without native-speaker review.</li>
-    <li><strong>Never</strong> make credential-affecting grading decisions — Claude drafts, humans sign.</li>
+<div class="callout callout--ok">
+  <div class="callout-title">Education's motto</div>
+  <p><strong>Accuracy over fluency.</strong> A confident wrong explanation is worse than a plain correct one. The <code>fact-check-gate</code> refusing to sign off on unsupported claims is a <em>feature</em>.</p>
+</div>
+
+<div class="callout callout--danger">
+  <div class="callout-title">Hard lines for Education</div>
+  <ul>
+    <li>Never paste identifiable learner submissions — <code>anonymizer</code> first.</li>
+    <li>Never process minors' data. Escalate to Education Lead + Legal.</li>
+    <li>Never publish a translation without native-speaker review.</li>
+    <li>Never make credential-affecting grading decisions — Claude drafts, humans sign.</li>
   </ul>
 </div>
 
 <h2>Escalation owners</h2>
-<ul>
-  <li><strong>Learner-PII or minors</strong> — Education Lead + Legal (Restricted).</li>
-  <li><strong>Technical accuracy</strong> — DevRel + Tech via tension.</li>
-  <li><strong>Translation disputes</strong> — Education Lead.</li>
-</ul>
+<div class="takeaways stagger">
+  <div class="takeaway">
+    <div class="takeaway-title">Education Lead + Legal</div>
+    <div class="takeaway-body">Learner PII or minors' data. Restricted by default.</div>
+  </div>
+  <div class="takeaway">
+    <div class="takeaway-title">DevRel or Tech</div>
+    <div class="takeaway-body">Technical review of lessons touching protocol / cryptography.</div>
+  </div>
+  <div class="takeaway">
+    <div class="takeaway-title">Native-speaker reviewer</div>
+    <div class="takeaway-body">Every translation, via tension to the reviewer role.</div>
+  </div>
+</div>
 
-<h2>Dig deeper</h2>
-<ul>
-  <li><a href="../departments/education/CLAUDE.md">CLAUDE.md</a></li>
-  <li><a href="../departments/education/workflow/README.md">workflow/</a></li>
-  <li><a href="../departments/education/workflow/qa-and-review.md">QA and review</a></li>
-  <li><a href="../departments/education/workflow/translation-workflow.md">translation workflow</a></li>
-  <li><a href="../departments/education/workflow/learner-support.md">learner support</a></li>
-</ul>
+<p class="mt-8"><a href="../departments/education/CLAUDE.md">CLAUDE.md →</a> · <a href="../departments/education/workflow/README.md">Workflow →</a> · <a href="../departments/education/workflow/translation-workflow.md">Translations →</a> · <a href="../departments/education/workflow/learner-support.md">Learner support →</a></p>

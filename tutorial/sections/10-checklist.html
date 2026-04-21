@@ -1,28 +1,41 @@
-<span class="section-badge">10 / 13 · You're ready</span>
-<h1>Checklist + next steps</h1>
-<p class="lede">Tick each item as you complete it. Your progress is saved in this browser — come back anytime to pick up where you left off.</p>
+<section class="hero stagger">
+  <div class="hero-eyebrow"><span class="hero-eyebrow-dot"></span> 10 / 13 · You're ready</div>
+  <h1>Your readiness checklist.</h1>
+  <p class="lede">Tick items as you complete them. Saved in this browser. Come back anytime.</p>
+</section>
+
+<div class="checklist-progress">
+  <div class="checklist-progress-ring">
+    <svg width="54" height="54" viewBox="0 0 54 54">
+      <circle class="track" cx="27" cy="27" r="24"></circle>
+      <circle class="fill" cx="27" cy="27" r="24" stroke-dasharray="150.8" stroke-dashoffset="150.8"></circle>
+    </svg>
+    <div class="pct">0%</div>
+  </div>
+  <div class="checklist-progress-label"><strong>0 of 16</strong> complete — start anywhere.</div>
+</div>
 
 <h2>Setup</h2>
 <ul class="checklist">
   <li>
     <input type="checkbox" id="chk-installer" data-key="installer">
-    <label for="chk-installer">Ran <code>./install.sh</code> (or <code>./install.ps1</code>) and saw the "done" message.</label>
+    <label for="chk-installer">Ran <code>./install.sh</code> and saw "done".</label>
   </li>
   <li>
     <input type="checkbox" id="chk-dept" data-key="dept">
-    <label for="chk-dept">Selected my department during install.</label>
+    <label for="chk-dept">Selected my department.</label>
   </li>
   <li>
     <input type="checkbox" id="chk-nestr" data-key="nestr">
-    <label for="chk-nestr">Added my Nestr API key to <code>~/.claude/mcp.json</code> (or the Desktop MCP settings).</label>
+    <label for="chk-nestr">Added my Nestr API key to <code>~/.claude/mcp.json</code>.</label>
   </li>
   <li>
     <input type="checkbox" id="chk-verify" data-key="verify">
-    <label for="chk-verify">Verified: asked Claude "who am I in Nestr?" and got a real answer.</label>
+    <label for="chk-verify">Verified Nestr works — "who am I?" returned my real identity.</label>
   </li>
   <li>
     <input type="checkbox" id="chk-settings" data-key="settings">
-    <label for="chk-settings">Reviewed <code>~/.claude/settings.bsva-template.json</code> and merged the deny rules into my personal settings.</label>
+    <label for="chk-settings">Reviewed <code>settings.bsva-template.json</code> and merged deny rules.</label>
   </li>
 </ul>
 
@@ -30,26 +43,19 @@
 <ul class="checklist">
   <li>
     <input type="checkbox" id="chk-flagship" data-key="flagship">
-    <label for="chk-flagship">Read the flagship security trio:
-      <a href="../guides/for-humans/07-BEFORE-YOU-PASTE.md">07-BEFORE-YOU-PASTE</a>,
-      <a href="../guides/for-humans/08-what-to-send.md">08-what-to-send</a>,
-      <a href="../guides/for-humans/09-what-NOT-to-send.md">09-what-NOT-to-send</a>.</label>
+    <label for="chk-flagship">Read the security trio: <a href="../guides/for-humans/07-BEFORE-YOU-PASTE.md">07</a>, <a href="../guides/for-humans/08-what-to-send.md">08</a>, <a href="../guides/for-humans/09-what-NOT-to-send.md">09</a>.</label>
   </li>
   <li>
     <input type="checkbox" id="chk-cycle" data-key="cycle">
-    <label for="chk-cycle">Read <a href="../workflow/01-the-cycle.md">workflow/01-the-cycle.md</a> (the 10-step cycle, with a worked example).</label>
+    <label for="chk-cycle">Read <a href="../workflow/01-the-cycle.md">workflow/01-the-cycle.md</a>.</label>
   </li>
   <li>
     <input type="checkbox" id="chk-nvtension" data-key="nvtension">
-    <label for="chk-nvtension">Read <a href="../workflow/03-nest-vs-tension.md">workflow/03-nest-vs-tension.md</a> (15 worked cases).</label>
+    <label for="chk-nvtension">Read <a href="../workflow/03-nest-vs-tension.md">nest-vs-tension</a> (15 cases).</label>
   </li>
   <li>
     <input type="checkbox" id="chk-dept-claude" data-key="dept-claude">
-    <label for="chk-dept-claude">Read my department's <code>CLAUDE.md</code> and <code>workflow/</code> folder.</label>
-  </li>
-  <li>
-    <input type="checkbox" id="chk-examples" data-key="examples">
-    <label for="chk-examples">Read at least one full worked example (DevRel has 3 in <code>departments/developer-relations/workflow/examples/</code>).</label>
+    <label for="chk-dept-claude">Read my department's <code>CLAUDE.md</code> and <code>workflow/</code>.</label>
   </li>
 </ul>
 
@@ -57,19 +63,19 @@
 <ul class="checklist">
   <li>
     <input type="checkbox" id="chk-picked" data-key="picked">
-    <label for="chk-picked">Picked a small real task (not throwaway, 1–2 hours, not Restricted).</label>
+    <label for="chk-picked">Picked a small real task.</label>
   </li>
   <li>
     <input type="checkbox" id="chk-clarify" data-key="clarify">
-    <label for="chk-clarify">Ran CLARIFY with Claude before anything else.</label>
+    <label for="chk-clarify">Ran CLARIFY before anything else.</label>
   </li>
   <li>
     <input type="checkbox" id="chk-nestr-node" data-key="nestr-node">
-    <label for="chk-nestr-node">Created the Nestr node (nest or tension) with past-tense title + acceptance criteria.</label>
+    <label for="chk-nestr-node">Created the Nestr node with past-tense title + acceptance criteria.</label>
   </li>
   <li>
     <input type="checkbox" id="chk-plan" data-key="plan">
-    <label for="chk-plan">Used plan-mode; approved explicitly before scaffolding.</label>
+    <label for="chk-plan">Used plan-mode; approved explicitly.</label>
   </li>
   <li>
     <input type="checkbox" id="chk-report" data-key="report">
@@ -77,52 +83,29 @@
   </li>
   <li>
     <input type="checkbox" id="chk-closed" data-key="closed">
-    <label for="chk-closed">Marked the nest Done with acceptance criteria met.</label>
+    <label for="chk-closed">Marked the nest Done.</label>
   </li>
 </ul>
 
-<h2>Habits to build this week</h2>
+<h2>Habits to build</h2>
 <ul class="checklist">
   <li>
     <input type="checkbox" id="chk-preflight" data-key="preflight">
-    <label for="chk-preflight">Pre-flight classification at the start of every session (takes 30s).</label>
-  </li>
-  <li>
-    <input type="checkbox" id="chk-anon" data-key="anon">
-    <label for="chk-anon">Run <code>anonymizer</code> on any external content before pasting.</label>
+    <label for="chk-preflight">Pre-flight classification at the start of every session.</label>
   </li>
   <li>
     <input type="checkbox" id="chk-cluster" data-key="cluster">
-    <label for="chk-cluster">Cluster cross-role tensions — ≤ 2 per day per target role.</label>
-  </li>
-  <li>
-    <input type="checkbox" id="chk-diff" data-key="diff">
-    <label for="chk-diff">Review <code>git diff</code> before every commit (don't trust Claude's summary).</label>
-  </li>
-  <li>
-    <input type="checkbox" id="chk-retro" data-key="retro">
-    <label for="chk-retro">Spot promotable work — if I typed the same instruction 3×, it's a skill candidate.</label>
+    <label for="chk-cluster">Cluster cross-role tensions — ≤ 2/day/target role.</label>
   </li>
 </ul>
 
-<hr>
-
-<h2>Where to go when you need something</h2>
-<ul>
-  <li><strong>Pre-flight a paste</strong> → <a href="../guides/for-humans/07-BEFORE-YOU-PASTE.md">07-BEFORE-YOU-PASTE.md</a></li>
-  <li><strong>Redact something</strong> → <a href="../security/redaction-playbook.md">redaction-playbook.md</a></li>
-  <li><strong>Nest or tension?</strong> → <a href="../workflow/03-nest-vs-tension.md">03-nest-vs-tension.md</a></li>
-  <li><strong>Start a new project</strong> → your dept's <code>workflow/scaffold-matrix.md</code></li>
-  <li><strong>Something leaked</strong> → <a href="../security/incident-response.md">incident-response.md</a></li>
-  <li><strong>I want to propose a skill</strong> → <a href="../workflow/09-retro-and-skills.md">09-retro-and-skills.md</a></li>
-  <li><strong>Claude Code product questions</strong> → <a href="https://claude.com/claude-code">claude.com/claude-code</a></li>
-</ul>
-
-<h2>Re-open this tutorial any time</h2>
-<pre><code>cd ~/bsva-ai-structure/tutorial
-./start.sh</code></pre>
+<hr class="divider">
 
 <div class="callout">
-  <div class="callout-title">You're ready</div>
-  <p>The structure is just the starting point. Every session you run now adds to BSVA's collective skill — through promotable patterns, through the tensions that tighten the guidance, through the PRs that close loops from real incidents. Welcome.</p>
+  <div class="callout-title">Re-open this tour anytime</div>
+  <pre><code>cd ~/bsva-ai-structure/tutorial
+./start.sh</code></pre>
 </div>
+
+<h2 class="center">You're ready.</h2>
+<p class="center muted">The structure is the starting point. Every session you run adds to BSVA's collective skill — through promotable patterns, tightened guidance, and PRs that close loops from real incidents. Welcome.</p>

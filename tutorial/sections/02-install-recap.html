@@ -1,55 +1,50 @@
-<span class="section-badge">2 / 13 · Setup</span>
-<h1>What just happened</h1>
-<p class="lede">A quick recap of what the installer did — so you know what changed on your machine and how to verify it.</p>
+<section class="hero stagger">
+  <div class="hero-eyebrow"><span class="hero-eyebrow-dot"></span> 2 / 13 · Setup</div>
+  <h1>What the installer did.</h1>
+  <p class="lede">A quick recap — so you know what changed on your machine and can verify it in under a minute.</p>
+  <svg class="hero-illu" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+    <path d="M20 40h80M20 60h80M20 80h60"/>
+    <circle cx="100" cy="80" r="8" stroke-dasharray="3 3"/>
+  </svg>
+</section>
 
-<h2>The installer's job</h2>
-<p><code>install.sh</code> (or <code>install.ps1</code> on Windows) is idempotent — safe to re-run. It:</p>
-<ol>
-  <li>Created <code>~/.claude/</code> if it didn't exist.</li>
-  <li>Copied the <strong>global skills</strong> into <code>~/.claude/skills/</code>.</li>
-  <li>Installed the base <strong>CLAUDE.md</strong> at <code>~/.claude/CLAUDE.md</code> — Claude reads this every session.</li>
-  <li>Wrote MCP and settings templates you can merge into your config.</li>
-  <li>Asked which <strong>department</strong> you're in (recorded at <code>~/.claude/.bsva-department</code>).</li>
-  <li>Backed up anything it replaced to <code>~/.claude/.bsva-backup/&lt;timestamp&gt;/</code>.</li>
-</ol>
-
-<h2>Where things live after install</h2>
-<pre><code>~/.claude/
-├── CLAUDE.md              ← base rules every session reads
-├── skills/
-│   ├── bsva-docx/
-│   ├── bsva-pptx/
-│   ├── bsva-onepager/
-│   ├── clarify/           ← the global workflow skills
-│   ├── tension-or-nest/
-│   ├── classify-before-publish/
-│   ├── nestr-cluster/
-│   └── anonymizer/
-├── mcp.bsva-template.json       ← MCP config template (merge into your mcp.json)
-├── settings.bsva-template.json  ← settings template (merge into your settings.json)
-└── .bsva-backup/                ← backups, automatic
-</code></pre>
+<h2>What landed in <code>~/.claude/</code></h2>
+<div class="takeaways stagger">
+  <div class="takeaway">
+    <div class="takeaway-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></div>
+    <div class="takeaway-title">CLAUDE.md</div>
+    <div class="takeaway-body">The base rules every Claude session reads — BSVA identity, voice, security floors.</div>
+  </div>
+  <div class="takeaway">
+    <div class="takeaway-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></div>
+    <div class="takeaway-title">Skills</div>
+    <div class="takeaway-body">8 global skills: <code>clarify</code>, <code>tension-or-nest</code>, <code>classify-before-publish</code>, <code>nestr-cluster</code>, <code>anonymizer</code>, plus <code>bsva-docx</code> / <code>pptx</code> / <code>onepager</code>.</div>
+  </div>
+  <div class="takeaway">
+    <div class="takeaway-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div>
+    <div class="takeaway-title">Templates</div>
+    <div class="takeaway-body">MCP and settings templates you review and merge into your real config — backed up if you already had them.</div>
+  </div>
+</div>
 
 <h2>Three things to do now</h2>
 
-<h3>1. Add your Nestr API key to your MCP config</h3>
-<p>Open <code>~/.claude/mcp.bsva-template.json</code>. Replace <code>&lt;your-nestr-api-key&gt;</code> with the key from Nestr → Settings → API. Merge the <code>mcpServers</code> block into your real <code>~/.claude/mcp.json</code> (or into the Desktop app's MCP settings). Restart Claude.</p>
+<h3>1. Wire up your Nestr MCP</h3>
+<p>Open <code>~/.claude/mcp.bsva-template.json</code>, replace <code>&lt;your-nestr-api-key&gt;</code>, merge the <code>mcpServers</code> block into <code>~/.claude/mcp.json</code>. Restart Claude.</p>
 
 <h3>2. Review the settings template</h3>
-<p>Open <code>~/.claude/settings.bsva-template.json</code>. Don't blindly overwrite your personal <code>settings.json</code> — copy the permission allow/deny blocks across, and keep your own stricter rules.</p>
+<p>Peek at <code>~/.claude/settings.bsva-template.json</code>. Copy the deny rules across. Don't relax them.</p>
 
 <h3>3. Verify</h3>
-<p>Open Claude and ask:</p>
-<pre><code id="verify-prompt">Use the Nestr MCP to tell me who I am and which workspace I am in.</code><button class="btn btn-secondary copy-btn" data-copy="#verify-prompt">Copy</button></pre>
-<p>You should see your name, role, and workspace. If you see an auth error, your API key didn't land in the right place.</p>
-
-<div class="callout callout--warn">
-  <div class="callout-title">To re-run the installer</div>
-  <p>Run <code>./install.sh</code> again from the repo folder. Add <code>--sync</code> to skip the department prompt. The installer will back up anything it replaces.</p>
+<p>Ask Claude in any session:</p>
+<div class="prompt-card">
+  <span class="prompt-label">prompt</span>
+  <span id="verify-prompt">Use the Nestr MCP to tell me who I am and which workspace I am in.</span>
+  <button class="copy-btn" data-copy="#verify-prompt">Copy</button>
 </div>
+<p>If you see your name + workspace, you're wired up. Auth error → revisit step 1.</p>
 
-<h2>Keeping up to date</h2>
-<p>When the repo changes, pull and sync:</p>
-<pre><code>cd ~/bsva-ai-structure
-git pull
-./install.sh --sync</code></pre>
+<div class="callout callout--ok">
+  <div class="callout-title">Re-running later</div>
+  <p>Run <code>./install.sh</code> or <code>./install.ps1</code> again anytime — idempotent. Add <code>--sync</code> after <code>git pull</code> to update global pieces without the department prompt.</p>
+</div>

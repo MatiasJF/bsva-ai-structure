@@ -1,31 +1,41 @@
-<span class="section-badge">7 / 13 · Department path</span>
-<h1>Choose your department</h1>
-<p class="lede">The next section of this tour is department-specific. Pick the one you work in — we'll remember it for later, and you can always come back to this page to switch.</p>
+<section class="hero stagger">
+  <div class="hero-eyebrow"><span class="hero-eyebrow-dot"></span> 7 / 13 · Your path</div>
+  <h1>Pick your department.</h1>
+  <p class="lede">The next section is department-specific. Pick yours — we'll remember it. You can always come back and switch.</p>
+</section>
 
-<div class="card-grid">
-  <a href="#08-dept-devrel" class="card" data-dept="devrel">
-    <div class="card-title">Developer Relations</div>
-    <div class="card-sub">SDK support, examples, workshops, blog, events</div>
-    <p class="small">Default tier: Internal → Public on publish.</p>
+<div class="feature-grid stagger">
+  <a href="#08-dept-devrel" class="feature-card" data-dept="devrel">
+    <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+    <div class="feature-title">Developer Relations</div>
+    <div class="feature-sub">Default tier: Internal → Public</div>
+    <div class="feature-body">SDK support, examples, workshops, blog, dev events.</div>
+    <div class="feature-arrow"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
   </a>
-  <a href="#08-dept-tech" class="card" data-dept="tech">
-    <div class="card-title">Technology / Engineering</div>
-    <div class="card-sub">Services, RFCs, research, code review, incidents</div>
-    <p class="small">Default tier: Internal. Confidential for security work.</p>
+  <a href="#08-dept-tech" class="feature-card" data-dept="tech">
+    <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+    <div class="feature-title">Technology / Engineering</div>
+    <div class="feature-sub">Default tier: Internal · Confidential (security)</div>
+    <div class="feature-body">Services, RFCs, research, code review, incidents.</div>
+    <div class="feature-arrow"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
   </a>
-  <a href="#08-dept-education" class="card" data-dept="education">
-    <div class="card-title">Education / BSV Academy</div>
-    <div class="card-sub">Lessons, assessments, translations, learner support</div>
-    <p class="small">Default tier: Internal drafts → Public on publish. Confidential for learner data.</p>
+  <a href="#08-dept-education" class="feature-card" data-dept="education">
+    <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
+    <div class="feature-title">Education / BSV Academy</div>
+    <div class="feature-sub">Default tier: Internal → Public</div>
+    <div class="feature-body">Lessons, assessments, translations, learner support.</div>
+    <div class="feature-arrow"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
   </a>
-  <a href="#08-dept-operations" class="card" data-dept="operations">
-    <div class="card-title">Operations</div>
-    <div class="card-sub">Biz-dev, marketing, legal, exec</div>
-    <p class="small">Default tier: Confidential (biz-dev). Restricted (legal + exec).</p>
+  <a href="#08-dept-operations" class="feature-card" data-dept="operations">
+    <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+    <div class="feature-title">Operations</div>
+    <div class="feature-sub">Default tier: Confidential · Restricted (legal/exec)</div>
+    <div class="feature-body">Biz-dev, marketing, legal, exec. Strictest defaults.</div>
+    <div class="feature-arrow"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
   </a>
 </div>
 
 <div class="callout">
-  <div class="callout-title">What if I work across departments?</div>
-  <p>Pick whichever covers most of your work. Each Claude session is usually scoped to one project, and each project links one department's <code>CLAUDE.md</code>. Switch departments by re-running <code>./install.sh</code> or editing <code>~/.claude/.bsva-department</code>.</p>
+  <div class="callout-title">Working across departments?</div>
+  <p>Pick whichever covers most of your work. Each Claude session is usually scoped to one project. Switch later by re-running <code>./install.sh</code> or editing <code>~/.claude/.bsva-department</code>.</p>
 </div>

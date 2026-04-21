@@ -1,60 +1,59 @@
-<span class="section-badge">3 / 13 · Architecture</span>
-<h1>How the pieces fit together</h1>
-<p class="lede">A single picture. Repo, your machine, your projects, and the MCPs Claude talks to.</p>
+<section class="hero stagger">
+  <div class="hero-eyebrow"><span class="hero-eyebrow-dot"></span> 3 / 13 · Architecture</div>
+  <h1>How it all fits together.</h1>
+  <p class="lede">Repo, your machine, your projects, and the tools Claude talks to — in one picture.</p>
+  <svg class="hero-illu" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+    <rect x="20" y="20" width="30" height="30" rx="3"/>
+    <rect x="70" y="20" width="30" height="30" rx="3"/>
+    <rect x="20" y="70" width="30" height="30" rx="3"/>
+    <rect x="70" y="70" width="30" height="30" rx="3"/>
+    <path d="M50 35h20M35 50v20M85 50v20M50 85h20" stroke-dasharray="2 3"/>
+  </svg>
+</section>
 
 <div class="mermaid">
 flowchart TB
-  subgraph repo["GitHub — bsva-ai-structure"]
-    global["global/<br/>base CLAUDE.md<br/>skills · MCPs · settings"]
-    guides["guides/<br/>for-humans · for-claude<br/>visuals"]
-    workflow["workflow/<br/>the 10-step cycle<br/>CLARIFY · nest-vs-tension"]
-    depts["departments/<br/>devrel · technology<br/>education · operations"]
+  subgraph repo["GitHub · bsva-ai-structure"]
+    direction LR
+    gl["global/<br/>base CLAUDE.md · skills · MCPs"]
+    wf["workflow/<br/>the 10-step cycle"]
+    dp["departments/<br/>devrel · tech · education · operations"]
   end
-
-  installer(["install.sh / install.ps1<br/>idempotent"])
-
+  inst(["install.sh / install.ps1"])
   subgraph machine["Your machine"]
-    home["~/.claude/<br/>CLAUDE.md · skills · mcp.json<br/>settings.json"]
-    project["Your project(s)<br/>CLAUDE.md (symlinked or copied)<br/>.claude/skills · code · content"]
+    home["~/.claude/<br/>CLAUDE.md · skills · mcp.json"]
+    proj["Your project<br/>CLAUDE.md · .claude/ · code"]
   end
-
   subgraph mcps["MCP servers"]
-    nestr["Nestr<br/>(your API key)"]
-    simple["simple-mcp<br/>(BSV scaffolds)"]
-    woc["WhatsOnChain<br/>(public chain data)"]
-    academy["BSV Academy<br/>(knowledge base)"]
+    n["Nestr"]; s["simple-mcp"]; w["WhatsOnChain"]; a["BSV Academy"]
   end
-
-  claude[["Claude Code<br/>CLI or Desktop"]]
-
-  repo -->|git clone &#43; pull| installer
-  installer -->|copies global| home
-  installer -.->|records dept| project
-  home --> claude
-  project --> claude
-  claude &lt;--&gt; nestr
-  claude &lt;--&gt; simple
-  claude &lt;--&gt; woc
-  claude &lt;--&gt; academy
+  c[["Claude Code"]]
+  repo --> inst --> home
+  inst -.-> proj
+  home --> c
+  proj --> c
+  c <--> n; c <--> s; c <--> w; c <--> a
 </div>
 
-<h2>Layered context</h2>
-<p>Claude doesn't see just one <code>CLAUDE.md</code>. It sees a stack:</p>
-<ol>
-  <li><strong>Global</strong> — <code>~/.claude/CLAUDE.md</code> (installed by the BSVA installer; everyone has it).</li>
-  <li><strong>Department</strong> — <code>departments/&lt;your-dept&gt;/CLAUDE.md</code> (linked into projects).</li>
-  <li><strong>Project</strong> — your project's own <code>CLAUDE.md</code> for context specific to that work.</li>
-</ol>
-<p>Rules cascade. Security floors <strong>only get tighter</strong>, never looser. A project can't relax the global rules; it can tighten them.</p>
+<h2>Claude reads a stack of <code>CLAUDE.md</code> files</h2>
+<p>Each layer adds context. Security floors <strong>only get tighter</strong>, never looser.</p>
 
-<h2>What each layer is for</h2>
-<ul>
-  <li><strong>Global</strong> — BSVA identity, brand voice, security minimums, the 5 global skills (CLARIFY, tension-or-nest, classify-before-publish, nestr-cluster, anonymizer).</li>
-  <li><strong>Department</strong> — the workflow cycle applied to your department's artifacts, department skills, default classification tier.</li>
-  <li><strong>Project</strong> — SDK version, audience, specific constraints, linked Nestr nest IDs.</li>
-</ul>
-
-<div class="callout">
-  <div class="callout-title">Dig deeper</div>
-  <p>The full diagram with walkthrough lives at <code>guides/visuals/01-architecture.md</code>.</p>
+<div class="takeaways stagger">
+  <div class="takeaway">
+    <div class="takeaway-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20 15 15 0 0 1 0-20z"/></svg></div>
+    <div class="takeaway-title">1. Global</div>
+    <div class="takeaway-body">BSVA identity, brand voice, security minimums, the 5 global workflow skills. Every session reads this.</div>
+  </div>
+  <div class="takeaway">
+    <div class="takeaway-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18M3 9h18"/></svg></div>
+    <div class="takeaway-title">2. Department</div>
+    <div class="takeaway-body">Your team's artifacts, skills, default tier, escalation owners. Loaded when you're in a dept-linked project.</div>
+  </div>
+  <div class="takeaway">
+    <div class="takeaway-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M10 13l-2 2 2 2M14 13l2 2-2 2"/></svg></div>
+    <div class="takeaway-title">3. Project</div>
+    <div class="takeaway-body">Specific context — SDK version, audience, linked Nestr nest IDs. Only this project.</div>
+  </div>
 </div>
+
+<p class="mt-8"><a href="../guides/visuals/01-architecture.md">See the annotated architecture with all details →</a></p>

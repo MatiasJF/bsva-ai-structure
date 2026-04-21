@@ -1,78 +1,66 @@
-<span class="section-badge">8 / 13 · Operations</span>
-<h1>Operations playbook</h1>
-<p class="lede">Operations covers Biz-Dev, Marketing, Legal, and Exec. This is where content sensitivity peaks — defaults are stricter than any other department.</p>
+<section class="hero stagger">
+  <div class="hero-eyebrow"><span class="hero-eyebrow-dot"></span> 8 / 13 · Operations</div>
+  <h1>Operations playbook.</h1>
+  <p class="lede">Four sub-sections, one strict posture: anonymize-first, up-classify by default, unannounced partners become <code>[PARTNER_A]</code>.</p>
+</section>
 
-<h2>The Operations twist</h2>
-<div class="callout callout--warn">
-  <div class="callout-title">Anonymize-first posture</div>
-  <p>The <code>anonymizer</code> skill auto-runs at the start of every Operations session. Unannounced partner names never enter Claude — they become <code>[PARTNER_A]</code>. Real values are filled in outside Claude.</p>
+<h2>Four sub-sections</h2>
+<div class="feature-grid stagger">
+  <a href="../departments/operations/biz-dev/CLAUDE.md" class="feature-card" style="border-top: 3px solid var(--tier-confidential);">
+    <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 21l-6-6m2-5a7 7 0 1 1-14 0 7 7 0 0 1 14 0z"/></svg></div>
+    <div class="feature-title">Biz-Dev</div>
+    <div class="feature-sub"><span class="dept-tier-strip"><span class="dot c"></span>Confidential</span></div>
+    <div class="feature-body">Lead lists, partner posture briefs, proposal shells. Public sources in, placeholders out.</div>
+  </a>
+  <a href="../departments/operations/marketing/CLAUDE.md" class="feature-card" style="border-top: 3px solid var(--tier-internal);">
+    <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg></div>
+    <div class="feature-title">Marketing</div>
+    <div class="feature-sub"><span class="dept-tier-strip"><span class="dot i"></span>Internal → <span class="dot p"></span>Public</span></div>
+    <div class="feature-body">Blogs, social, events, PR response. Brand-voice linter required on every draft.</div>
+  </a>
+  <a href="../departments/operations/legal/CLAUDE.md" class="feature-card" style="border-top: 3px solid var(--tier-restricted);">
+    <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M5 8h14M5 8l4 8H1zM19 8l4 8h-8z"/></svg></div>
+    <div class="feature-title">Legal</div>
+    <div class="feature-sub"><span class="dept-tier-strip"><span class="dot r"></span>Restricted</span></div>
+    <div class="feature-body">Public research + generic templates only. BSVA-specific matter stays offline.</div>
+  </a>
+  <a href="../departments/operations/exec/CLAUDE.md" class="feature-card" style="border-top: 3px solid var(--tier-restricted);">
+    <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15 8 22 9 17 14 18 21 12 18 6 21 7 14 2 9 9 8 12 2"/></svg></div>
+    <div class="feature-title">Exec</div>
+    <div class="feature-sub"><span class="dept-tier-strip"><span class="dot r"></span>Restricted</span></div>
+    <div class="feature-body">Public-audience drafts + public-source digests. No board / M&amp;A / HR.</div>
+  </a>
 </div>
 
-<h2>Sub-section defaults</h2>
-<div class="card-grid">
-  <a href="../departments/operations/biz-dev/CLAUDE.md" class="card" style="border-top: 3px solid var(--tier-confidential);">
-    <div class="card-title">Biz-Dev</div>
-    <div class="card-sub">Default: Confidential</div>
-    <p class="small">Lead lists, partner posture briefs, proposal shells (placeholders only).</p>
-  </a>
-  <a href="../departments/operations/marketing/CLAUDE.md" class="card" style="border-top: 3px solid var(--tier-internal);">
-    <div class="card-title">Marketing</div>
-    <div class="card-sub">Default: Internal → Public</div>
-    <p class="small">Blogs, social, events, press responses. Brand voice linter required.</p>
-  </a>
-  <a href="../departments/operations/legal/CLAUDE.md" class="card" style="border-top: 3px solid var(--tier-restricted);">
-    <div class="card-title">Legal</div>
-    <div class="card-sub">Default: Restricted</div>
-    <p class="small">Public research + generic templates only. BSVA-specific matter stays offline.</p>
-  </a>
-  <a href="../departments/operations/exec/CLAUDE.md" class="card" style="border-top: 3px solid var(--tier-restricted);">
-    <div class="card-title">Exec</div>
-    <div class="card-sub">Default: Restricted</div>
-    <p class="small">Public-audience drafts + public-source digests only. No board / M&amp;A / HR.</p>
-  </a>
+<h2>Key Operations skills</h2>
+<div class="chip-row mt-8" style="gap: 8px;">
+  <span class="chip">anonymizer</span>
+  <span class="chip">lead-list-builder</span>
+  <span class="chip">vc-public-profile-researcher</span>
+  <span class="chip">market-maker-tracker</span>
+  <span class="chip">partnership-proposal-shell</span>
+  <span class="chip">event-pitch-drafter</span>
+  <span class="chip">pr-response-drafter</span>
+  <span class="chip">external-comm-check</span>
+  <span class="chip">legal-public-research</span>
+  <span class="chip">exec-brief-builder</span>
 </div>
 
-<h2>Key skills (installed for Operations)</h2>
-<ul>
-  <li><code>lead-list-builder</code> — public-source lead lists with URL-cited rows (Biz-Dev).</li>
-  <li><code>vc-public-profile-researcher</code> — single-target public posture (Biz-Dev).</li>
-  <li><code>market-maker-tracker</code> — published positions over time (Biz-Dev).</li>
-  <li><code>partnership-proposal-shell</code> — placeholder-only templates (Biz-Dev).</li>
-  <li><code>event-pitch-drafter</code> — sponsor-facing event copy (Marketing).</li>
-  <li><code>pr-response-drafter</code> — measured reactive comms (Marketing).</li>
-  <li><code>external-comm-check</code> — BSVA voice linter (Marketing).</li>
-  <li><code>legal-public-research</code> — public-law only (Legal).</li>
-  <li><code>exec-brief-builder</code> — public-source exec digests (Exec).</li>
-</ul>
-
-<h2>Universal Operations hard lines</h2>
 <div class="callout callout--danger">
-  <div class="callout-title">Never in any Claude session</div>
-  <ul style="margin: 0;">
-    <li><strong>Unannounced partner names</strong> — anywhere. Use <code>[PARTNER_A]</code>.</li>
-    <li><strong>Draft or executed contract language.</strong></li>
-    <li><strong>HR / compensation / performance / equity data.</strong></li>
-    <li><strong>Board minutes, memos, resolutions.</strong></li>
-    <li><strong>M&amp;A, term sheets, due-diligence.</strong></li>
-    <li><strong>Commercial terms paired with real counterparty names.</strong></li>
-    <li><strong>AI imagery / fabricated quotes</strong> of real people.</li>
+  <div class="callout-title">Hard lines across all of Operations</div>
+  <ul>
+    <li>No unannounced partner names — anywhere. Use <code>[PARTNER_A]</code>.</li>
+    <li>No draft or executed contract language.</li>
+    <li>No HR / compensation / performance / equity data.</li>
+    <li>No board minutes / memos / M&amp;A / term sheets.</li>
+    <li>No commercial terms paired with real counterparty names.</li>
+    <li>No AI imagery or fabricated quotes of real people.</li>
   </ul>
 </div>
 
-<h2>Escalation owners</h2>
-<ul>
-  <li><strong>Biz-Dev</strong> — Biz-Dev Lead.</li>
-  <li><strong>Marketing</strong> — Marketing Lead (+ Legal if risk, Exec if reputation).</li>
-  <li><strong>Legal</strong> — Legal Lead. Any BSVA-specific matter stays offline.</li>
-  <li><strong>Exec</strong> — Exec Lead.</li>
-  <li><strong>Any Operations leak / incident</strong> — DevRel + Security immediately.</li>
-</ul>
+<div class="callout callout--warn">
+  <div class="callout-title">The Operations rule</div>
+  <p><strong>Anonymize-first posture.</strong> The <code>anonymizer</code> skill runs at the start of every Operations session, before any user-pasted content is processed.</p>
+</div>
 
-<h2>Dig deeper</h2>
-<ul>
-  <li><a href="../departments/operations/CLAUDE.md">Operations CLAUDE.md</a></li>
-  <li><a href="../departments/operations/workflow/README.md">workflow/</a></li>
-  <li><a href="../departments/operations/workflow/classify-before-paste.md">classify-before-paste</a></li>
-  <li><a href="../departments/operations/workflow/placeholders-and-anonymizer.md">placeholders + anonymizer</a></li>
-  <li><a href="../departments/operations/workflow/source-allowlists.md">source allowlists</a></li>
-</ul>
+<p class="mt-8"><a href="../departments/operations/CLAUDE.md">CLAUDE.md →</a> · <a href="../departments/operations/workflow/README.md">Workflow →</a> · <a href="../departments/operations/workflow/classify-before-paste.md">Classify before paste →</a></p>
