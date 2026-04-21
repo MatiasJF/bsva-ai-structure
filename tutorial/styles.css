@@ -217,7 +217,14 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
   border: 1px solid var(--border);
   overflow: hidden;
   margin-bottom: 40px;
+  /* 2-column grid: text on left, illustration on right.
+     If no illustration is present, col 2 collapses to 0 automatically. */
+  display: grid;
+  grid-template-columns: 1fr auto;
+  column-gap: 32px;
+  align-items: center;
 }
+.hero > :not(.hero-illu) { grid-column: 1; }
 .hero::before {
   content: "";
   position: absolute; inset: 0;
@@ -256,19 +263,18 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
   max-width: 62ch;
 }
 .hero-illu {
-  position: absolute;
-  right: 28px;
-  top: 50%;
-  transform: translateY(-50%);
+  /* Lives in grid column 2, spanning all text rows. Cannot overlap by design. */
+  grid-column: 2;
+  grid-row: 1 / -1;
+  align-self: center;
+  justify-self: end;
   width: 108px; height: 108px;
-  opacity: 0.18;
+  opacity: 0.22;
   pointer-events: none;
   color: var(--accent-strong);
 }
-/* Reserve space on the right so long text never runs under the illustration */
-.hero:has(.hero-illu) { padding-right: 170px; }
 @media (max-width: 760px) {
-  .hero:has(.hero-illu) { padding-right: 40px; }
+  .hero { grid-template-columns: 1fr; }
   .hero-illu { display: none; }
 }
 
