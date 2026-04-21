@@ -1,0 +1,55 @@
+<span class="section-badge">2 / 13 · Setup</span>
+<h1>What just happened</h1>
+<p class="lede">A quick recap of what the installer did — so you know what changed on your machine and how to verify it.</p>
+
+<h2>The installer's job</h2>
+<p><code>install.sh</code> (or <code>install.ps1</code> on Windows) is idempotent — safe to re-run. It:</p>
+<ol>
+  <li>Created <code>~/.claude/</code> if it didn't exist.</li>
+  <li>Copied the <strong>global skills</strong> into <code>~/.claude/skills/</code>.</li>
+  <li>Installed the base <strong>CLAUDE.md</strong> at <code>~/.claude/CLAUDE.md</code> — Claude reads this every session.</li>
+  <li>Wrote MCP and settings templates you can merge into your config.</li>
+  <li>Asked which <strong>department</strong> you're in (recorded at <code>~/.claude/.bsva-department</code>).</li>
+  <li>Backed up anything it replaced to <code>~/.claude/.bsva-backup/&lt;timestamp&gt;/</code>.</li>
+</ol>
+
+<h2>Where things live after install</h2>
+<pre><code>~/.claude/
+├── CLAUDE.md              ← base rules every session reads
+├── skills/
+│   ├── bsva-docx/
+│   ├── bsva-pptx/
+│   ├── bsva-onepager/
+│   ├── clarify/           ← the global workflow skills
+│   ├── tension-or-nest/
+│   ├── classify-before-publish/
+│   ├── nestr-cluster/
+│   └── anonymizer/
+├── mcp.bsva-template.json       ← MCP config template (merge into your mcp.json)
+├── settings.bsva-template.json  ← settings template (merge into your settings.json)
+└── .bsva-backup/                ← backups, automatic
+</code></pre>
+
+<h2>Three things to do now</h2>
+
+<h3>1. Add your Nestr API key to your MCP config</h3>
+<p>Open <code>~/.claude/mcp.bsva-template.json</code>. Replace <code>&lt;your-nestr-api-key&gt;</code> with the key from Nestr → Settings → API. Merge the <code>mcpServers</code> block into your real <code>~/.claude/mcp.json</code> (or into the Desktop app's MCP settings). Restart Claude.</p>
+
+<h3>2. Review the settings template</h3>
+<p>Open <code>~/.claude/settings.bsva-template.json</code>. Don't blindly overwrite your personal <code>settings.json</code> — copy the permission allow/deny blocks across, and keep your own stricter rules.</p>
+
+<h3>3. Verify</h3>
+<p>Open Claude and ask:</p>
+<pre><code id="verify-prompt">Use the Nestr MCP to tell me who I am and which workspace I am in.</code><button class="btn btn-secondary copy-btn" data-copy="#verify-prompt">Copy</button></pre>
+<p>You should see your name, role, and workspace. If you see an auth error, your API key didn't land in the right place.</p>
+
+<div class="callout callout--warn">
+  <div class="callout-title">To re-run the installer</div>
+  <p>Run <code>./install.sh</code> again from the repo folder. Add <code>--sync</code> to skip the department prompt. The installer will back up anything it replaces.</p>
+</div>
+
+<h2>Keeping up to date</h2>
+<p>When the repo changes, pull and sync:</p>
+<pre><code>cd ~/bsva-ai-structure
+git pull
+./install.sh --sync</code></pre>

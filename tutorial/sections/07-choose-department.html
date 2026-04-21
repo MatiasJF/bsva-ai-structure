@@ -1,0 +1,31 @@
+<span class="section-badge">7 / 13 · Department path</span>
+<h1>Choose your department</h1>
+<p class="lede">The next section of this tour is department-specific. Pick the one you work in — we'll remember it for later, and you can always come back to this page to switch.</p>
+
+<div class="card-grid">
+  <a href="#08-dept-devrel" class="card" data-dept="devrel">
+    <div class="card-title">Developer Relations</div>
+    <div class="card-sub">SDK support, examples, workshops, blog, events</div>
+    <p class="small">Default tier: Internal → Public on publish.</p>
+  </a>
+  <a href="#08-dept-tech" class="card" data-dept="tech">
+    <div class="card-title">Technology / Engineering</div>
+    <div class="card-sub">Services, RFCs, research, code review, incidents</div>
+    <p class="small">Default tier: Internal. Confidential for security work.</p>
+  </a>
+  <a href="#08-dept-education" class="card" data-dept="education">
+    <div class="card-title">Education / BSV Academy</div>
+    <div class="card-sub">Lessons, assessments, translations, learner support</div>
+    <p class="small">Default tier: Internal drafts → Public on publish. Confidential for learner data.</p>
+  </a>
+  <a href="#08-dept-operations" class="card" data-dept="operations">
+    <div class="card-title">Operations</div>
+    <div class="card-sub">Biz-dev, marketing, legal, exec</div>
+    <p class="small">Default tier: Confidential (biz-dev). Restricted (legal + exec).</p>
+  </a>
+</div>
+
+<div class="callout">
+  <div class="callout-title">What if I work across departments?</div>
+  <p>Pick whichever covers most of your work. Each Claude session is usually scoped to one project, and each project links one department's <code>CLAUDE.md</code>. Switch departments by re-running <code>./install.sh</code> or editing <code>~/.claude/.bsva-department</code>.</p>
+</div>

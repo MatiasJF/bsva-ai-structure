@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BSVA AI — Guided Tour</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Top bar: progress + theme toggle -->
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 32 32" width="28" height="28" role="img" aria-label="BSVA logo">
+          <rect x="2" y="2" width="28" height="28" rx="6" fill="currentColor" />
+          <text x="16" y="21" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="12" fill="var(--bg)">B</text>
+        </svg>
+      </div>
+      <div class="brand-text">
+        <div class="brand-title">BSVA AI</div>
+        <div class="brand-sub">Guided Tour</div>
+      </div>
+    </div>
+    <div class="progress">
+      <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width: 0%"></div></div>
+      <div class="progress-label" id="progress-label">0 / 13</div>
+    </div>
+    <div class="topbar-actions">
+      <button class="btn-icon" id="theme-toggle" title="Toggle theme" aria-label="Toggle theme">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main layout: sidebar nav + section container -->
+  <div class="layout">
+    <nav class="sidebar" aria-label="Tutorial sections">
+      <ol class="nav-list" id="nav-list">
+        <li data-section="01-welcome"><a href="#01-welcome">1. Welcome</a></li>
+        <li data-section="02-install-recap"><a href="#02-install-recap">2. Install recap</a></li>
+        <li data-section="03-architecture"><a href="#03-architecture">3. Architecture</a></li>
+        <li data-section="04-the-cycle"><a href="#04-the-cycle">4. The cycle</a></li>
+        <li data-section="05-before-you-paste"><a href="#05-before-you-paste">5. Before you paste</a></li>
+        <li data-section="06-nest-vs-tension"><a href="#06-nest-vs-tension">6. Nest vs tension</a></li>
+        <li data-section="07-choose-department"><a href="#07-choose-department">7. Choose your department</a></li>
+        <li data-section="08-dept-devrel" class="indent" hidden><a href="#08-dept-devrel">8a. Developer Relations</a></li>
+        <li data-section="08-dept-tech" class="indent" hidden><a href="#08-dept-tech">8b. Technology</a></li>
+        <li data-section="08-dept-education" class="indent" hidden><a href="#08-dept-education">8c. Education</a></li>
+        <li data-section="08-dept-operations" class="indent" hidden><a href="#08-dept-operations">8d. Operations</a></li>
+        <li data-section="09-first-session"><a href="#09-first-session">9. Your first session</a></li>
+        <li data-section="10-checklist"><a href="#10-checklist">10. Checklist</a></li>
+      </ol>
+      <div class="sidebar-footer">
+        <a href="../README.md" class="sidebar-link">Repo README</a>
+        <a href="../workflow/README.md" class="sidebar-link">Workflow docs</a>
+      </div>
+    </nav>
+
+    <main class="content" id="content" aria-live="polite">
+      <!-- Partials are loaded here by scripts.js -->
+      <div class="loading">Loading tutorial…</div>
+    </main>
+  </div>
+
+  <!-- Bottom nav: prev / next -->
+  <nav class="bottom-nav" aria-label="Section navigation">
+    <button class="btn btn-secondary" id="prev-btn">← Previous</button>
+    <div class="keyboard-hint" aria-hidden="true">
+      <kbd>←</kbd> <kbd>→</kbd> to navigate · <kbd>?</kbd> for help
+    </div>
+    <button class="btn btn-primary" id="next-btn">Next →</button>
+  </nav>
+
+  <!-- File-protocol warning, shown if fetch fails -->
+  <template id="file-protocol-template">
+    <div class="error-card">
+      <h2>This page needs a local server</h2>
+      <p>Browsers block loading partials from <code>file://</code> for security reasons. Run the bundled launcher to start a tiny local server:</p>
+      <pre><code>cd ~/bsva-ai-structure/tutorial
+./start.sh      # macOS / Linux
+./start.ps1     # Windows
+</code></pre>
+      <p>Then come back to this tab (the launcher will open it for you).</p>
+      <p>Alternatively, you can run any local HTTP server in this folder — for example <code>python3 -m http.server 8000</code> — and open <code>http://localhost:8000/tutorial/</code>.</p>
+    </div>
+  </template>
+
+  <!-- Mermaid for diagrams — loaded only when a section needs it -->
+  <script>
+    window.__MERMAID_SRC = "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js";
+  </script>
+  <script src="scripts.js"></script>
+</body>
+</html>

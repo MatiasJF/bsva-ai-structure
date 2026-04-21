@@ -1,0 +1,60 @@
+<span class="section-badge">3 / 13 · Architecture</span>
+<h1>How the pieces fit together</h1>
+<p class="lede">A single picture. Repo, your machine, your projects, and the MCPs Claude talks to.</p>
+
+<div class="mermaid">
+flowchart TB
+  subgraph repo["GitHub — bsva-ai-structure"]
+    global["global/<br/>base CLAUDE.md<br/>skills · MCPs · settings"]
+    guides["guides/<br/>for-humans · for-claude<br/>visuals"]
+    workflow["workflow/<br/>the 10-step cycle<br/>CLARIFY · nest-vs-tension"]
+    depts["departments/<br/>devrel · technology<br/>education · operations"]
+  end
+
+  installer(["install.sh / install.ps1<br/>idempotent"])
+
+  subgraph machine["Your machine"]
+    home["~/.claude/<br/>CLAUDE.md · skills · mcp.json<br/>settings.json"]
+    project["Your project(s)<br/>CLAUDE.md (symlinked or copied)<br/>.claude/skills · code · content"]
+  end
+
+  subgraph mcps["MCP servers"]
+    nestr["Nestr<br/>(your API key)"]
+    simple["simple-mcp<br/>(BSV scaffolds)"]
+    woc["WhatsOnChain<br/>(public chain data)"]
+    academy["BSV Academy<br/>(knowledge base)"]
+  end
+
+  claude[["Claude Code<br/>CLI or Desktop"]]
+
+  repo -->|git clone &#43; pull| installer
+  installer -->|copies global| home
+  installer -.->|records dept| project
+  home --> claude
+  project --> claude
+  claude &lt;--&gt; nestr
+  claude &lt;--&gt; simple
+  claude &lt;--&gt; woc
+  claude &lt;--&gt; academy
+</div>
+
+<h2>Layered context</h2>
+<p>Claude doesn't see just one <code>CLAUDE.md</code>. It sees a stack:</p>
+<ol>
+  <li><strong>Global</strong> — <code>~/.claude/CLAUDE.md</code> (installed by the BSVA installer; everyone has it).</li>
+  <li><strong>Department</strong> — <code>departments/&lt;your-dept&gt;/CLAUDE.md</code> (linked into projects).</li>
+  <li><strong>Project</strong> — your project's own <code>CLAUDE.md</code> for context specific to that work.</li>
+</ol>
+<p>Rules cascade. Security floors <strong>only get tighter</strong>, never looser. A project can't relax the global rules; it can tighten them.</p>
+
+<h2>What each layer is for</h2>
+<ul>
+  <li><strong>Global</strong> — BSVA identity, brand voice, security minimums, the 5 global skills (CLARIFY, tension-or-nest, classify-before-publish, nestr-cluster, anonymizer).</li>
+  <li><strong>Department</strong> — the workflow cycle applied to your department's artifacts, department skills, default classification tier.</li>
+  <li><strong>Project</strong> — SDK version, audience, specific constraints, linked Nestr nest IDs.</li>
+</ul>
+
+<div class="callout">
+  <div class="callout-title">Dig deeper</div>
+  <p>The full diagram with walkthrough lives at <code>guides/visuals/01-architecture.md</code>.</p>
+</div>

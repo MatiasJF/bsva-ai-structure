@@ -1,0 +1,94 @@
+<span class="section-badge">5 / 13 · Security · the most important section</span>
+<h1>Before you paste</h1>
+<p class="lede">30 seconds of discipline that prevents weeks of cleanup. Claude will not stop you — <strong>you are the gate</strong>. Claude's refusal is only the last-resort backstop.</p>
+
+<h2>The 4-tier classification</h2>
+<div class="tiers">
+  <div class="tier tier--public">
+    <span class="tier-label">Public</span>
+    <strong>Already published</strong>
+    <p>bsvblockchain.org, published Academy, public GitHub, press releases, public on-chain data.</p>
+  </div>
+  <div class="tier tier--internal">
+    <span class="tier-label">Internal</span>
+    <strong>BSVA-only, not published</strong>
+    <p>Roadmaps, drafts, meeting notes, most Nestr tensions, internal RFCs.</p>
+  </div>
+  <div class="tier tier--confidential">
+    <span class="tier-label">Confidential</span>
+    <strong>Harm if leaked</strong>
+    <p>Partner terms, unannounced features, unreleased financials, candidate pipeline.</p>
+  </div>
+  <div class="tier tier--restricted">
+    <span class="tier-label">Restricted</span>
+    <strong>Legal / fiduciary risk</strong>
+    <p>Contracts, NDAs, board, M&amp;A, HR, <strong>private keys</strong>. Never in Claude.</p>
+  </div>
+</div>
+
+<h2>The pre-flight checklist (do this EVERY time)</h2>
+<div class="flow">
+  <div class="flow-row">
+    <div class="flow-box decision">Is it published / clearly public?</div>
+    <span class="flow-arrow">→</span>
+    <div class="flow-box" style="border-color: var(--tier-public); background: #e6f6ea;">✅ Public — go</div>
+  </div>
+  <div class="flow-row">
+    <div class="flow-box decision">Private keys · HR · legal · board / M&amp;A?</div>
+    <span class="flow-arrow">→</span>
+    <div class="flow-box" style="border-color: var(--tier-restricted); background: #fcebe8;">🔴 STOP. Escalate.</div>
+  </div>
+  <div class="flow-row">
+    <div class="flow-box decision">Names · $ · NDA · unreleased?</div>
+    <span class="flow-arrow">→</span>
+    <div class="flow-box decision">Can I redact enough?</div>
+  </div>
+  <div class="flow-row">
+    <div class="flow-box" style="border-color: var(--tier-confidential); background: #fbe8d3;">🟠 Yes — Confidential, redact first, scoped session</div>
+    <div class="flow-box" style="border-color: var(--tier-restricted); background: #fcebe8;">🔴 No — STOP</div>
+  </div>
+</div>
+
+<h2>What Claude CAN and CAN'T do (myth-busting)</h2>
+<div class="card-grid">
+  <div class="card">
+    <div class="card-title">❌ Not true</div>
+    <div class="card-sub">Claude can read everything on my computer</div>
+    <p class="small">It reads only what the session is permitted to read — usually the current project folder and files you attach.</p>
+  </div>
+  <div class="card">
+    <div class="card-title">❌ Not true</div>
+    <div class="card-sub">Claude remembers everything we ever talked about</div>
+    <p class="small">Sessions are independent. Memory is file-based — you can read, edit, delete it.</p>
+  </div>
+  <div class="card">
+    <div class="card-title">❌ Not true</div>
+    <div class="card-sub">Claude is always online and searching the web</div>
+    <p class="small">WebFetch / WebSearch are permissioned tools. Many sessions don't use either.</p>
+  </div>
+  <div class="card">
+    <div class="card-title">✅ True</div>
+    <div class="card-sub">You are accountable for what Claude does on your behalf</div>
+    <p class="small">Your name is on the PR. Your signature is on the email. The classification is your call.</p>
+  </div>
+</div>
+
+<div class="callout callout--danger">
+  <div class="callout-title">Hard refusals — non-negotiable</div>
+  <ul>
+    <li><strong>Private keys, seed phrases, API keys, production credentials.</strong> Never anywhere.</li>
+    <li><strong>HR / salary / performance data.</strong> Route through HR process.</li>
+    <li><strong>Board / M&A / contracts.</strong> Out of Claude entirely.</li>
+    <li><strong>Unannounced partner names in drafts.</strong> Use placeholders.</li>
+  </ul>
+</div>
+
+<h2>Dig deeper</h2>
+<ul>
+  <li><a href="../guides/for-humans/07-BEFORE-YOU-PASTE.md">guides/for-humans/07-BEFORE-YOU-PASTE.md</a> — the flagship human guide</li>
+  <li><a href="../guides/for-humans/08-what-to-send.md">08-what-to-send.md</a> — green-light examples</li>
+  <li><a href="../guides/for-humans/09-what-NOT-to-send.md">09-what-NOT-to-send.md</a> — red-light examples</li>
+  <li><a href="../guides/for-humans/10-redact-before-you-paste.md">10-redact-before-you-paste.md</a> — how to sanitize</li>
+  <li><a href="../security/classification.md">security/classification.md</a> — source of truth</li>
+  <li><a href="../security/incident-response.md">security/incident-response.md</a> — if something goes wrong</li>
+</ul>

@@ -1,0 +1,75 @@
+<span class="section-badge">8 / 13 · Technology / Engineering</span>
+<h1>Tech playbook</h1>
+<p class="lede">You ship code changes, research notes, RFCs, incident responses, and CI/deployment work. Default tier: <span style="color: var(--tier-internal); font-weight: 600;">Internal</span> (code) · <span style="color: var(--tier-confidential); font-weight: 600;">Confidential</span> (security reports) · <span style="color: var(--tier-restricted); font-weight: 600;">Restricted</span> (keys, signing).</p>
+
+<h2>Your top 3 artifacts</h2>
+<table style="width: 100%; border-collapse: collapse; margin: 12px 0 24px;">
+  <thead>
+    <tr style="border-bottom: 1px solid var(--border);">
+      <th style="text-align: left; padding: 8px;">Artifact</th>
+      <th style="text-align: left; padding: 8px;">Cadence</th>
+      <th style="text-align: left; padding: 8px;">Top skills</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="border-bottom: 1px solid var(--border);">
+      <td style="padding: 8px;"><strong>Code change / PR</strong></td>
+      <td style="padding: 8px;">Daily</td>
+      <td style="padding: 8px;"><code>tech:review-pr</code>, <code>tech:classify-diff</code></td>
+    </tr>
+    <tr style="border-bottom: 1px solid var(--border);">
+      <td style="padding: 8px;"><strong>Research note</strong></td>
+      <td style="padding: 8px;">Weekly</td>
+      <td style="padding: 8px;"><code>tech:research-note</code></td>
+    </tr>
+    <tr>
+      <td style="padding: 8px;"><strong>RFC / BRC</strong></td>
+      <td style="padding: 8px;">Monthly</td>
+      <td style="padding: 8px;"><code>tech:new-rfc</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Key skills (installed for Tech)</h2>
+<ul>
+  <li><code>tech:new-service</code> — scaffolds a new backend service with BSVA conventions (<code>.env</code> ignored, design doc, CI baseline).</li>
+  <li><code>tech:new-rfc</code> — emits BRC-shaped tension parts with BSV Academy cross-references.</li>
+  <li><code>tech:review-pr</code> — runs the BSVA review checklist against a diff; flags hallucinated symbols and unasked refactors.</li>
+  <li><code>tech:incident-draft</code> — structures a Confidential postmortem; refuses unredacted logs.</li>
+  <li><code>tech:research-note</code> — template-driven spike, forces question + decision + method + "did not do".</li>
+  <li><code>tech:classify-diff</code> — scans a diff for secrets / customer identifiers / production hostnames before commit.</li>
+</ul>
+
+<h2>Tech-specific rules</h2>
+<div class="callout callout--danger">
+  <div class="callout-title">Hard lines</div>
+  <ul style="margin: 0;">
+    <li><strong>Never</strong> production signing. Testnet only if explicitly scoped.</li>
+    <li><strong>Never</strong> HSM configuration, policies, or credentials in a Claude session.</li>
+    <li><strong>Never</strong> raw customer data — redact or use synthetic fixtures.</li>
+    <li><strong>Never</strong> add dependencies without verifying against the registry (kills supply-chain drift).</li>
+    <li><strong>Crypto / auth / consensus</strong> code → second reviewer from Security required.</li>
+  </ul>
+</div>
+
+<h2>Workflow playbooks</h2>
+<ul>
+  <li><a href="../departments/technology/workflow/pr-workflow.md">pr-workflow.md</a> — code-change cycle</li>
+  <li><a href="../departments/technology/workflow/rfc-workflow.md">rfc-workflow.md</a> — RFC / BRC / ADR cycle</li>
+  <li><a href="../departments/technology/workflow/incident-workflow.md">incident-workflow.md</a> — contain first, document second</li>
+</ul>
+
+<h2>Escalation owners</h2>
+<ul>
+  <li><strong>Security / vulnerability</strong> — Security + Tech Lead; Restricted if severe.</li>
+  <li><strong>Architecture across services</strong> — Tech Lead + Standards circle.</li>
+  <li><strong>License / IP</strong> — Legal Lead.</li>
+  <li><strong>Capacity / deploys</strong> — Ops Lead + Tech Lead.</li>
+</ul>
+
+<h2>Dig deeper</h2>
+<ul>
+  <li><a href="../departments/technology/CLAUDE.md">CLAUDE.md</a></li>
+  <li><a href="../departments/technology/workflow/README.md">workflow/</a></li>
+  <li><a href="../departments/technology/guides/review-checklist.md">review checklist</a></li>
+</ul>

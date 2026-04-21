@@ -1,0 +1,68 @@
+<span class="section-badge">8 / 13 · Developer Relations</span>
+<h1>DevRel playbook</h1>
+<p class="lede">You ship dev-support, SDK examples, blog posts, workshops, and event enablement. Default tier: <span style="color: var(--tier-internal); font-weight: 600;">Internal</span> → <span style="color: var(--tier-public); font-weight: 600;">Public</span> on publish.</p>
+
+<h2>Your top 3 artifacts</h2>
+<table style="width: 100%; border-collapse: collapse; margin: 12px 0 24px;">
+  <thead>
+    <tr style="border-bottom: 1px solid var(--border);">
+      <th style="text-align: left; padding: 8px;">Artifact</th>
+      <th style="text-align: left; padding: 8px;">Cadence</th>
+      <th style="text-align: left; padding: 8px;">Top skills</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="border-bottom: 1px solid var(--border);">
+      <td style="padding: 8px;"><strong>Dev-support reply</strong></td>
+      <td style="padding: 8px;">Daily</td>
+      <td style="padding: 8px;"><code>draft-dev-support-reply</code>, <code>triage-sdk-issue</code>, <code>verify-sdk-surface</code></td>
+    </tr>
+    <tr style="border-bottom: 1px solid var(--border);">
+      <td style="padding: 8px;"><strong>SDK example</strong></td>
+      <td style="padding: 8px;">Weekly</td>
+      <td style="padding: 8px;"><code>sdk-example-scaffold</code>, <code>verify-sdk-surface</code>, <code>classify-before-publish</code></td>
+    </tr>
+    <tr>
+      <td style="padding: 8px;"><strong>Blog post</strong></td>
+      <td style="padding: 8px;">Bi-weekly</td>
+      <td style="padding: 8px;"><code>blog-post-from-transcript</code>, <code>verify-sdk-surface</code>, <code>external-comm-check</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Key skills (installed for DevRel)</h2>
+<ul>
+  <li><code>verify-sdk-surface</code> — kills hallucinated <code>@bsv/sdk</code> methods. Run on every SDK snippet, no exceptions.</li>
+  <li><code>sdk-example-scaffold</code> — scaffolds a minimal SDK example. Enforces "one concept per example".</li>
+  <li><code>draft-dev-support-reply</code> — drafts a support reply + triage decision (answer / repro-needed / bug-to-Tech / known-issue).</li>
+  <li><code>workshop-lesson-splitter</code> — turns a workshop outline into lesson branches with starter + solution.</li>
+  <li><code>blog-post-from-transcript</code> — converts a talk transcript into a BSVA-voice blog draft.</li>
+  <li><code>triage-sdk-issue</code> — classifies a dev-support thread in one shot.</li>
+</ul>
+
+<h2>DevRel-specific rules</h2>
+<div class="callout callout--warn">
+  <ul style="margin: 0;">
+    <li><strong>Never</strong> publish examples with hardcoded private keys or reused testnet keys.</li>
+    <li><strong>Never</strong> write about unreleased SDK features without sign-off.</li>
+    <li><strong>Never</strong> paste a developer's real user code — demand a sanitized minimal repro.</li>
+    <li><strong>Always</strong> run <code>verify-sdk-surface</code> before any SDK code leaves your machine.</li>
+  </ul>
+</div>
+
+<h2>Escalation owners</h2>
+<ul>
+  <li><strong>Tooling / structure</strong> — DevRel Lead.</li>
+  <li><strong>SDK correctness</strong> — sdk-maintainer (Tech).</li>
+  <li><strong>Partner naming</strong> — Biz-Dev Lead (before publish).</li>
+  <li><strong>Licensing</strong> — Legal Lead (before merge).</li>
+</ul>
+
+<h2>Dig deeper</h2>
+<ul>
+  <li><a href="../departments/developer-relations/CLAUDE.md">CLAUDE.md</a></li>
+  <li><a href="../departments/developer-relations/workflow/README.md">workflow/</a></li>
+  <li><a href="../departments/developer-relations/workflow/examples/02-sdk-example.md">example 2 — SDK example cycle</a></li>
+  <li><a href="../departments/developer-relations/workflow/examples/03-workshop.md">example 3 — workshop cycle</a></li>
+  <li><a href="../departments/developer-relations/templates/">templates/</a></li>
+</ul>

@@ -1,0 +1,128 @@
+<span class="section-badge">10 / 13 · You're ready</span>
+<h1>Checklist + next steps</h1>
+<p class="lede">Tick each item as you complete it. Your progress is saved in this browser — come back anytime to pick up where you left off.</p>
+
+<h2>Setup</h2>
+<ul class="checklist">
+  <li>
+    <input type="checkbox" id="chk-installer" data-key="installer">
+    <label for="chk-installer">Ran <code>./install.sh</code> (or <code>./install.ps1</code>) and saw the "done" message.</label>
+  </li>
+  <li>
+    <input type="checkbox" id="chk-dept" data-key="dept">
+    <label for="chk-dept">Selected my department during install.</label>
+  </li>
+  <li>
+    <input type="checkbox" id="chk-nestr" data-key="nestr">
+    <label for="chk-nestr">Added my Nestr API key to <code>~/.claude/mcp.json</code> (or the Desktop MCP settings).</label>
+  </li>
+  <li>
+    <input type="checkbox" id="chk-verify" data-key="verify">
+    <label for="chk-verify">Verified: asked Claude "who am I in Nestr?" and got a real answer.</label>
+  </li>
+  <li>
+    <input type="checkbox" id="chk-settings" data-key="settings">
+    <label for="chk-settings">Reviewed <code>~/.claude/settings.bsva-template.json</code> and merged the deny rules into my personal settings.</label>
+  </li>
+</ul>
+
+<h2>Reading</h2>
+<ul class="checklist">
+  <li>
+    <input type="checkbox" id="chk-flagship" data-key="flagship">
+    <label for="chk-flagship">Read the flagship security trio:
+      <a href="../guides/for-humans/07-BEFORE-YOU-PASTE.md">07-BEFORE-YOU-PASTE</a>,
+      <a href="../guides/for-humans/08-what-to-send.md">08-what-to-send</a>,
+      <a href="../guides/for-humans/09-what-NOT-to-send.md">09-what-NOT-to-send</a>.</label>
+  </li>
+  <li>
+    <input type="checkbox" id="chk-cycle" data-key="cycle">
+    <label for="chk-cycle">Read <a href="../workflow/01-the-cycle.md">workflow/01-the-cycle.md</a> (the 10-step cycle, with a worked example).</label>
+  </li>
+  <li>
+    <input type="checkbox" id="chk-nvtension" data-key="nvtension">
+    <label for="chk-nvtension">Read <a href="../workflow/03-nest-vs-tension.md">workflow/03-nest-vs-tension.md</a> (15 worked cases).</label>
+  </li>
+  <li>
+    <input type="checkbox" id="chk-dept-claude" data-key="dept-claude">
+    <label for="chk-dept-claude">Read my department's <code>CLAUDE.md</code> and <code>workflow/</code> folder.</label>
+  </li>
+  <li>
+    <input type="checkbox" id="chk-examples" data-key="examples">
+    <label for="chk-examples">Read at least one full worked example (DevRel has 3 in <code>departments/developer-relations/workflow/examples/</code>).</label>
+  </li>
+</ul>
+
+<h2>First session</h2>
+<ul class="checklist">
+  <li>
+    <input type="checkbox" id="chk-picked" data-key="picked">
+    <label for="chk-picked">Picked a small real task (not throwaway, 1–2 hours, not Restricted).</label>
+  </li>
+  <li>
+    <input type="checkbox" id="chk-clarify" data-key="clarify">
+    <label for="chk-clarify">Ran CLARIFY with Claude before anything else.</label>
+  </li>
+  <li>
+    <input type="checkbox" id="chk-nestr-node" data-key="nestr-node">
+    <label for="chk-nestr-node">Created the Nestr node (nest or tension) with past-tense title + acceptance criteria.</label>
+  </li>
+  <li>
+    <input type="checkbox" id="chk-plan" data-key="plan">
+    <label for="chk-plan">Used plan-mode; approved explicitly before scaffolding.</label>
+  </li>
+  <li>
+    <input type="checkbox" id="chk-report" data-key="report">
+    <label for="chk-report">Wrote the REPORT comment on close.</label>
+  </li>
+  <li>
+    <input type="checkbox" id="chk-closed" data-key="closed">
+    <label for="chk-closed">Marked the nest Done with acceptance criteria met.</label>
+  </li>
+</ul>
+
+<h2>Habits to build this week</h2>
+<ul class="checklist">
+  <li>
+    <input type="checkbox" id="chk-preflight" data-key="preflight">
+    <label for="chk-preflight">Pre-flight classification at the start of every session (takes 30s).</label>
+  </li>
+  <li>
+    <input type="checkbox" id="chk-anon" data-key="anon">
+    <label for="chk-anon">Run <code>anonymizer</code> on any external content before pasting.</label>
+  </li>
+  <li>
+    <input type="checkbox" id="chk-cluster" data-key="cluster">
+    <label for="chk-cluster">Cluster cross-role tensions — ≤ 2 per day per target role.</label>
+  </li>
+  <li>
+    <input type="checkbox" id="chk-diff" data-key="diff">
+    <label for="chk-diff">Review <code>git diff</code> before every commit (don't trust Claude's summary).</label>
+  </li>
+  <li>
+    <input type="checkbox" id="chk-retro" data-key="retro">
+    <label for="chk-retro">Spot promotable work — if I typed the same instruction 3×, it's a skill candidate.</label>
+  </li>
+</ul>
+
+<hr>
+
+<h2>Where to go when you need something</h2>
+<ul>
+  <li><strong>Pre-flight a paste</strong> → <a href="../guides/for-humans/07-BEFORE-YOU-PASTE.md">07-BEFORE-YOU-PASTE.md</a></li>
+  <li><strong>Redact something</strong> → <a href="../security/redaction-playbook.md">redaction-playbook.md</a></li>
+  <li><strong>Nest or tension?</strong> → <a href="../workflow/03-nest-vs-tension.md">03-nest-vs-tension.md</a></li>
+  <li><strong>Start a new project</strong> → your dept's <code>workflow/scaffold-matrix.md</code></li>
+  <li><strong>Something leaked</strong> → <a href="../security/incident-response.md">incident-response.md</a></li>
+  <li><strong>I want to propose a skill</strong> → <a href="../workflow/09-retro-and-skills.md">09-retro-and-skills.md</a></li>
+  <li><strong>Claude Code product questions</strong> → <a href="https://claude.com/claude-code">claude.com/claude-code</a></li>
+</ul>
+
+<h2>Re-open this tutorial any time</h2>
+<pre><code>cd ~/bsva-ai-structure/tutorial
+./start.sh</code></pre>
+
+<div class="callout">
+  <div class="callout-title">You're ready</div>
+  <p>The structure is just the starting point. Every session you run now adds to BSVA's collective skill — through promotable patterns, through the tensions that tighten the guidance, through the PRs that close loops from real incidents. Welcome.</p>
+</div>

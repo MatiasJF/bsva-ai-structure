@@ -1,0 +1,72 @@
+<span class="section-badge">8 / 13 · Education / BSV Academy</span>
+<h1>Education playbook</h1>
+<p class="lede">You ship lessons, assessments, translations, learner-support replies, and course modules. Default tier: <span style="color: var(--tier-internal); font-weight: 600;">Internal</span> drafts → <span style="color: var(--tier-public); font-weight: 600;">Public</span> on publish. Learner data: <span style="color: var(--tier-confidential); font-weight: 600;">Confidential</span> or <span style="color: var(--tier-restricted); font-weight: 600;">Restricted</span> (minors).</p>
+
+<h2>Your top 3 artifacts</h2>
+<table style="width: 100%; border-collapse: collapse; margin: 12px 0 24px;">
+  <thead>
+    <tr style="border-bottom: 1px solid var(--border);">
+      <th style="text-align: left; padding: 8px;">Artifact</th>
+      <th style="text-align: left; padding: 8px;">Cadence</th>
+      <th style="text-align: left; padding: 8px;">Top skills</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="border-bottom: 1px solid var(--border);">
+      <td style="padding: 8px;"><strong>Lesson</strong></td>
+      <td style="padding: 8px;">Weekly</td>
+      <td style="padding: 8px;"><code>lesson-outline-builder</code>, <code>academy-term-linker</code>, <code>reading-level-checker</code></td>
+    </tr>
+    <tr style="border-bottom: 1px solid var(--border);">
+      <td style="padding: 8px;"><strong>Assessment item</strong></td>
+      <td style="padding: 8px;">With every lesson</td>
+      <td style="padding: 8px;"><code>quiz-generator</code></td>
+    </tr>
+    <tr>
+      <td style="padding: 8px;"><strong>Translation</strong></td>
+      <td style="padding: 8px;">Per published EN asset</td>
+      <td style="padding: 8px;">(native reviewer tension + <code>academy-term-linker</code>)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Key skills (installed for Education)</h2>
+<ul>
+  <li><code>lesson-outline-builder</code> — enforces the pedagogy gate: audience, prerequisites, 3–5 verb-led objectives, assessment strategy. Refuses to expand without them.</li>
+  <li><code>quiz-generator</code> — items whose answers quote the lesson verbatim; distractors keyed to plausible misconceptions.</li>
+  <li><code>reading-level-checker</code> — Flesch-Kincaid + jargon density + simplification suggestions.</li>
+  <li><code>academy-term-linker</code> — looks up every term via <code>bsv_get_concepts</code>; inserts canonical links.</li>
+  <li><code>learner-support-drafter</code> — drafts replies with <code>anonymizer</code> auto-run. Never sends.</li>
+</ul>
+
+<h2>Education's motto</h2>
+<div class="callout">
+  <div class="callout-title">Accuracy over fluency</div>
+  <p>A confident wrong explanation is worse than a plain correct one. Lessons outlive their authors — they reach thousands of learners who can't easily evaluate our claims. The <code>fact-check-gate</code> refusing to sign off on unsupported claims is a <strong>feature</strong>.</p>
+</div>
+
+<h2>Education-specific rules</h2>
+<div class="callout callout--warn">
+  <ul style="margin: 0;">
+    <li><strong>Never</strong> paste identifiable learner submissions. Run <code>anonymizer</code> first.</li>
+    <li><strong>Never</strong> process minors' data. Escalate to Education Lead + Legal.</li>
+    <li><strong>Never</strong> publish a translation without native-speaker review.</li>
+    <li><strong>Never</strong> make credential-affecting grading decisions — Claude drafts, humans sign.</li>
+  </ul>
+</div>
+
+<h2>Escalation owners</h2>
+<ul>
+  <li><strong>Learner-PII or minors</strong> — Education Lead + Legal (Restricted).</li>
+  <li><strong>Technical accuracy</strong> — DevRel + Tech via tension.</li>
+  <li><strong>Translation disputes</strong> — Education Lead.</li>
+</ul>
+
+<h2>Dig deeper</h2>
+<ul>
+  <li><a href="../departments/education/CLAUDE.md">CLAUDE.md</a></li>
+  <li><a href="../departments/education/workflow/README.md">workflow/</a></li>
+  <li><a href="../departments/education/workflow/qa-and-review.md">QA and review</a></li>
+  <li><a href="../departments/education/workflow/translation-workflow.md">translation workflow</a></li>
+  <li><a href="../departments/education/workflow/learner-support.md">learner support</a></li>
+</ul>

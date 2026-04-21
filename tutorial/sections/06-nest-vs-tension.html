@@ -1,0 +1,72 @@
+<span class="section-badge">6 / 13 · Nestr</span>
+<h1>Nest vs tension</h1>
+<p class="lede">BSVA runs on Nestr. Every substantive task becomes a Nestr node — which kind depends on whether you're crossing a role boundary.</p>
+
+<h2>The rule (memorize)</h2>
+<div class="card-grid">
+  <div class="card" style="border-color: var(--success);">
+    <div class="card-title">Nest</div>
+    <div class="card-sub">Own work inside a role you fill</div>
+    <p>Your role is accountable, you don't need anyone else's time or authority. Past-tense title. Acceptance criteria in the description. <code>users: [you]</code>.</p>
+  </div>
+  <div class="card" style="border-color: var(--warning);">
+    <div class="card-title">Tension</div>
+    <div class="card-sub">Ask crossing role boundaries</div>
+    <p>Another role is accountable for the outcome or must approve. Uses Nestr's 5 processing pathways (request info / share info / request outcome / request action / governance).</p>
+  </div>
+</div>
+
+<h2>Decision tree</h2>
+<div class="flow">
+  <div class="flow-row">
+    <div class="flow-box decision">Does work fall inside a role I fill?</div>
+  </div>
+  <div class="flow-row">
+    <div class="flow-box" style="border-color: var(--success);">✅ YES + no cross-role need → <strong>nest</strong></div>
+    <div class="flow-box" style="border-color: var(--warning);">⚠ YES but needs other role's review → <strong>nest (mine)</strong> + <strong>tension (for the cross-role piece)</strong></div>
+  </div>
+  <div class="flow-row">
+    <div class="flow-box" style="border-color: var(--accent);">➜ NO, someone else is accountable → <strong>tension</strong> to that role</div>
+  </div>
+  <div class="flow-row">
+    <div class="flow-box decision">Structural change (new role / policy / domain)?</div>
+    <span class="flow-arrow">→</span>
+    <div class="flow-box" style="border-color: var(--accent);"><strong>Governance tension</strong> on the circle, with labeled parts</div>
+  </div>
+</div>
+
+<h2>Three worked cases</h2>
+
+<h3>DevRel — writing a blog post</h3>
+<p>"I want to publish a blog on BRC-100."</p>
+<ul>
+  <li><strong>Nest</strong> under DevRel role (your own work).</li>
+  <li><strong>+ Tension</strong> to Tech's sdk-maintainer role (for crypto-section fact-check).</li>
+  <li><strong>+ Tension</strong> to Marketing (for cross-post) — clustered into one weekly Marketing tension.</li>
+</ul>
+
+<h3>Tech — refactoring a service</h3>
+<p>"I need to widen the header-chain reorg window."</p>
+<ul>
+  <li><strong>Nest</strong> under your role in Tech.</li>
+  <li><strong>+ Tension</strong> to Security if the change touches crypto / consensus (hard rule).</li>
+</ul>
+
+<h3>Biz-Dev — building a lead list</h3>
+<p>"I want to build a Tier-1 VC list for blockchain infra."</p>
+<ul>
+  <li><strong>Nest</strong> under Biz-Dev role (own work, public sources).</li>
+  <li><strong>No tensions</strong> — no one else's time is needed.</li>
+</ul>
+
+<h2>Cluster, don't spam</h2>
+<div class="callout">
+  <div class="callout-title">Nestr convention</div>
+  <p>An agent creating 20 tensions per hour is technically correct but practically hostile. <strong>BSVA norm:</strong> ≤ 2 tension submissions per day per target role unless urgent. Cluster related asks into one well-structured tension. The <code>global:nestr-cluster</code> skill does this automatically.</p>
+</div>
+
+<h2>Dig deeper</h2>
+<ul>
+  <li><a href="../workflow/03-nest-vs-tension.md">workflow/03-nest-vs-tension.md</a> — 15 worked cases</li>
+  <li><a href="../workflow/04-nestr-conventions.md">workflow/04-nestr-conventions.md</a> — past-tense titles, acceptance criteria, comments</li>
+</ul>

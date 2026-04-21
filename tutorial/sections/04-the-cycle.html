@@ -1,0 +1,52 @@
+<span class="section-badge">4 / 13 · The cycle</span>
+<h1>The 10-step cycle everyone follows</h1>
+<p class="lede">The spine of BSVA's Claude discipline. Every piece of shared work — from a 3-line dev-support reply to a month-long workshop — follows the same 10 steps.</p>
+
+<div class="stepper" role="list">
+  <button class="step" role="listitem" data-step="0"><span class="step-num">Step 1</span><span class="step-name">Desire</span></button>
+  <button class="step" role="listitem" data-step="1"><span class="step-num">Step 2</span><span class="step-name">Clarify</span></button>
+  <button class="step" role="listitem" data-step="2"><span class="step-num">Step 3</span><span class="step-name">Capture</span></button>
+  <button class="step" role="listitem" data-step="3"><span class="step-num">Step 4</span><span class="step-name">Plan-mode</span></button>
+  <button class="step" role="listitem" data-step="4"><span class="step-num">Step 5</span><span class="step-name">Discuss</span></button>
+  <button class="step" role="listitem" data-step="5"><span class="step-num">Step 6</span><span class="step-name">Approve</span></button>
+  <button class="step" role="listitem" data-step="6"><span class="step-num">Step 7</span><span class="step-name">Scaffold</span></button>
+  <button class="step" role="listitem" data-step="7"><span class="step-num">Step 8</span><span class="step-name">Execute</span></button>
+  <button class="step" role="listitem" data-step="8"><span class="step-num">Step 9</span><span class="step-name">Report</span></button>
+  <button class="step" role="listitem" data-step="9"><span class="step-num">Step 10</span><span class="step-name">Close</span></button>
+</div>
+
+<div class="step-detail">Click any step above to see what it means.</div>
+
+<!-- Cycle data. Populated into step-detail on click. -->
+<script type="application/json" id="cycle-details">
+[
+  {"title":"1. Desire — \"I want / need X\"","body":"Someone feels a gap: frustration, an opportunity, a half-formed idea. Raw input. Often vague. That's fine — it's step 1, not step 7.","link":"../workflow/01-the-cycle.md"},
+  {"title":"2. Clarify — Claude asks, doesn't act","body":"Claude never jumps from step 1 to step 7. Before touching files, it asks the universal 5 (what / why / who for / success / tier) plus artifact-specific extras. Answers land in the Nestr nest description and stay with the work forever.","link":"../workflow/02-clarify.md"},
+  {"title":"3. Capture — nest or tension","body":"Decide the shape. Own work under your role → <strong>nest</strong>. Need another role's time/authority → <strong>tension</strong>. Fetch the parent circle's strategy for alignment. Past-tense title, acceptance criteria in the description.","link":"../workflow/03-nest-vs-tension.md"},
+  {"title":"4. Plan-mode — Claude drafts a plan","body":"With a clarified nest in hand, Claude enters plan-mode. The plan references the Nestr node and proposes files, approach, dependencies, estimate, and risks. Plans are short — readable in &lt; 2 minutes.","link":"../workflow/05-plan-mode-discipline.md"},
+  {"title":"5. Discuss — Q&A, alternatives, scope","body":"You push back. Trim scope, change approach, identify dependencies. Rounds are cheap (seconds). Scaffolding the wrong thing is expensive (hours).","link":"../workflow/01-the-cycle.md"},
+  {"title":"6. Approve — say \"go\" explicitly","body":"Explicit approval, not implied. Until then, Claude stays in plan-mode.","link":"../workflow/05-plan-mode-discipline.md"},
+  {"title":"7. Scaffold — template → project → layers","body":"Claude copies the right template, links the department CLAUDE.md, inits git, makes the first commit referencing the Nestr nest ID.","link":"../guides/visuals/06-project-scaffolding.md"},
+  {"title":"8. Execute — work happens, with comments","body":"As Claude makes progress: milestone comments on the nest, completed tasks marked, scope changes paused and re-approved, unexpected findings spawned as linked tensions (don't silently cross role lines).","link":"../workflow/04-nestr-conventions.md"},
+  {"title":"9. Report — completion note","body":"When the last task lands: a final comment summarizing outputs, plan deltas, new tensions spawned, and any work worth promoting to a skill.","link":"../workflow/09-retro-and-skills.md"},
+  {"title":"10. Close — human reviews","body":"The accountable human (not Claude) reviews against acceptance criteria, sets project.status: Done, completed: true. An open nest is an open loop; close them.","link":"../workflow/04-nestr-conventions.md"}
+]
+</script>
+
+<h2>When the cycle is mandatory</h2>
+<p>For <strong>shared / shipped work</strong>, always:</p>
+<ul>
+  <li>Anything that goes external (blog, PR, partner comm).</li>
+  <li>Anything that lands in a shared BSVA system.</li>
+  <li>Anything that takes more than 30 minutes or touches more than 2 files.</li>
+  <li>Anything that requires another role's review.</li>
+</ul>
+
+<h2>When you can skip</h2>
+<ul>
+  <li>Throwaway prototypes, personal notes, one-shot research.</li>
+  <li>Trivial transformations (format text, convert JSON → YAML).</li>
+  <li>3-line fixes with an obvious outcome.</li>
+</ul>
+
+<p>The distinction: <strong>does the output have an audience beyond you?</strong></p>
