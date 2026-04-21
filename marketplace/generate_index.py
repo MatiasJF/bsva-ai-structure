@@ -128,7 +128,9 @@ def collect_templates(scope: str, base: Path, items: list) -> None:
 
 
 def collect_mcp_configs(items: list) -> None:
-    """Global and dept MCP JSONs."""
+    """Global and dept MCP JSONs. Stores the full per-server config so the
+    marketplace drawer can render a clean structured view instead of dumping
+    raw JSON through a markdown renderer."""
     for path in REPO.glob("global/mcps/*.json"):
         try:
             data = json.loads(path.read_text(encoding="utf-8"))
@@ -136,16 +138,20 @@ def collect_mcp_configs(items: list) -> None:
             data = {}
         servers = data.get("mcpServers", {})
         for name, cfg in servers.items():
-            if name.startswith("_"):
+            if name.startswith("_") or not isinstance(cfg, dict):
                 continue
+            # Keep underscore-prefixed meta keys (_comment) out of the display config.
+            display_cfg = {k: v for k, v in cfg.items() if not k.startswith("_")}
             items.append(
                 {
                     "type": "mcp",
                     "scope": "global",
                     "name": name,
-                    "description": (cfg or {}).get("_comment", "").strip(),
+                    "description": cfg.get("_comment", "").strip(),
                     "path": rel(path),
-                    "body_preview": json.dumps(cfg, indent=2)[:500],
+                    "mcp_config": display_cfg,
+                    # Kept for search-match fallback only
+                    "body_preview": json.dumps(display_cfg, indent=2)[:500],
                 }
             )
 

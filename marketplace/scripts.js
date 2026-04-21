@@ -99,6 +99,58 @@
     return h;
   }
 
+  // ── MCP structured renderer ────────────────────────────────
+  function renderMcpBody(it) {
+    const cfg = it.mcp_config || {};
+    const command = cfg.command || '';
+    const args = Array.isArray(cfg.args) ? cfg.args : [];
+    const env  = cfg.env && typeof cfg.env === 'object' ? cfg.env : {};
+    const envEntries = Object.entries(env);
+
+    const looksPlaceholder = (v) =>
+      typeof v === 'string' &&
+      (/^<[^>]+>$/.test(v) || /\byour[-_]?/i.test(v) || v.includes('<optional') || v === '');
+
+    const cmdLine = [command, ...args].map(escapeHtml).join(' ');
+
+    const envRows = envEntries.length
+      ? `<table>
+          <thead><tr><th>Variable</th><th>Value</th><th>Status</th></tr></thead>
+          <tbody>
+            ${envEntries.map(([k, v]) => `
+              <tr>
+                <td><code>${escapeHtml(k)}</code></td>
+                <td><code>${escapeHtml(String(v))}</code></td>
+                <td>${looksPlaceholder(v)
+                  ? '<span class="mp-tier mp-tier--internal">replace</span>'
+                  : '<span class="mp-tier mp-tier--public">ok</span>'}</td>
+              </tr>`).join('')}
+          </tbody>
+        </table>`
+      : '<p class="muted">No environment variables.</p>';
+
+    const fullSnippet = JSON.stringify({ [it.name]: cfg }, null, 2);
+
+    return `
+      <h2>How to use this MCP</h2>
+      <p>Add the server block below to your <code>~/.claude/mcp.json</code> under the <code>mcpServers</code> key, then restart Claude.</p>
+
+      <h3>Server key</h3>
+      <pre><code>${escapeHtml(it.name)}</code></pre>
+
+      <h3>Command</h3>
+      <pre><code>${cmdLine || '<em>(none)</em>'}</code></pre>
+
+      <h3>Environment variables</h3>
+      ${envRows}
+
+      <h3>Full config snippet</h3>
+      <pre><code class="language-json">${escapeHtml(fullSnippet)}</code></pre>
+
+      <p class="muted small">Source file (not auto-merged): <code>${escapeHtml(it.path)}</code></p>
+    `;
+  }
+
   // ── filters UI ──────────────────────────────────────────────
   function renderFilters() {
     const counts = (dim) => {
@@ -223,15 +275,21 @@
 
     const desc = it.description ? `<div class="mp-desc">${escapeHtml(it.description)}</div>` : '';
 
-    try {
-      const res = await fetch('../' + it.path, { cache: 'no-cache' });
-      if (!res.ok) throw new Error('HTTP ' + res.status);
-      let text = await res.text();
-      // strip frontmatter
-      text = text.replace(/^---\s*\n[\s\S]*?\n---\s*\n/, '');
-      bodyEl.innerHTML = desc + renderMd(text);
-    } catch (err) {
-      bodyEl.innerHTML = desc + `<p class="muted">Couldn't load the source file: ${escapeHtml(err.message)}</p>`;
+    // MCPs have structured config; render a dedicated view instead of
+    // piping JSON through marked (which produces garbage).
+    if (it.type === 'mcp') {
+      bodyEl.innerHTML = desc + renderMcpBody(it);
+    } else {
+      try {
+        const res = await fetch('../' + it.path, { cache: 'no-cache' });
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        let text = await res.text();
+        // strip frontmatter
+        text = text.replace(/^---\s*\n[\s\S]*?\n---\s*\n/, '');
+        bodyEl.innerHTML = desc + renderMd(text);
+      } catch (err) {
+        bodyEl.innerHTML = desc + `<p class="muted">Couldn't load the source file: ${escapeHtml(err.message)}</p>`;
+      }
     }
 
     $('#drawer-foot').innerHTML =
