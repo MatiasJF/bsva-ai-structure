@@ -158,17 +158,44 @@ if [[ $SYNC_ONLY -eq 0 && $DRY_RUN -eq 0 && -f "$REPO_DIR/tutorial/install-hooks
   esac
 fi
 
+# ── offer to merge BSVA MCP servers into real mcp.json ────────────
+if [[ $SYNC_ONLY -eq 0 && $DRY_RUN -eq 0 && -f "$REPO_DIR/tutorial/install-mcps.py" ]]; then
+  log ""
+  log "→ wire BSVA's MCP servers into ~/.claude/mcp.json?"
+  log "  Adds Nestr, simple-mcp, WhatsOnChain, and BSV Academy as servers Claude can call."
+  log "  Your mcp.json will be backed up. Any custom servers you already have are preserved."
+  log "  You'll still need to drop your Nestr API key in afterwards — we'll tell you exactly where."
+  read -r -p "Merge the MCP servers now? [Y/n] " mcp_choice
+  case "${mcp_choice:-Y}" in
+    n|N|no|No|NO)
+      log "  skipped. merge later with:  python3 $REPO_DIR/tutorial/install-mcps.py"
+      ;;
+    *)
+      if command -v python3 &>/dev/null; then
+        python3 "$REPO_DIR/tutorial/install-mcps.py" || log "  ⚠ MCP merge failed; re-run manually."
+      else
+        log "  ⚠ python3 not found; re-run after installing:"
+        log "    python3 $REPO_DIR/tutorial/install-mcps.py"
+      fi
+      ;;
+  esac
+fi
+
 log ""
 log "✅ done."
 log "   backups (if any): $BACKUP_DIR"
 log ""
 log "Next steps:"
-log "  1. Start Claude  →  tutorial + marketplace will open automatically on the first session"
-log "  2. Or open them right now:"
-log "     $REPO_DIR/tutorial/start.sh              # tutorial"
-log "     $REPO_DIR/tutorial/start.sh marketplace  # marketplace"
-log "  3. Read guides/for-humans/07-BEFORE-YOU-PASTE.md"
-log "  4. Merge ~/.claude/mcp.bsva-template.json into your MCP setup"
+log "  1. Fill in your Nestr API key in ~/.claude/mcp.json"
+log "     (if you merged MCPs above, the merger told you exactly which lines)"
+log ""
+log "  2. Start Claude — tutorial + marketplace will open automatically on your"
+log "     first session. Or open them right now:"
+log "       $REPO_DIR/tutorial/start.sh              # tutorial"
+log "       $REPO_DIR/tutorial/start.sh marketplace  # marketplace"
+log ""
+log "  3. Must-read before your first real work session:"
+log "       $REPO_DIR/guides/for-humans/07-BEFORE-YOU-PASTE.md"
 log ""
 
 # ── offer to launch the tour right now too (belt-and-braces) ──────

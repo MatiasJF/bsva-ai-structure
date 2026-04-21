@@ -123,6 +123,12 @@ if (-not $Sync) {
   }
 }
 
+# ── locate python once (used by both mergers) ───────────────────
+$Py = $null
+foreach ($c in @('python3','python','py')) {
+  if (Get-Command $c -ErrorAction SilentlyContinue) { $Py = $c; break }
+}
+
 # ── offer to wire the SessionStart hook into real settings.json ────
 $HookMerger = Join-Path $RepoDir 'tutorial\install-hooks.py'
 if (-not $Sync -and -not $DryRun -and (Test-Path $HookMerger)) {
@@ -135,12 +141,8 @@ if (-not $Sync -and -not $DryRun -and (Test-Path $HookMerger)) {
   if ($hookChoice -match '^(n|no)$') {
     Log "  skipped. merge later with:  python3 $HookMerger"
   } else {
-    $py = $null
-    foreach ($c in @('python3','python','py')) {
-      if (Get-Command $c -ErrorAction SilentlyContinue) { $py = $c; break }
-    }
-    if ($py) {
-      & $py $HookMerger
+    if ($Py) {
+      & $Py $HookMerger
       if ($LASTEXITCODE -ne 0) { Log "  ⚠ hook merge failed; re-run manually." }
     } else {
       Log "  ⚠ python3 not found; re-run after installing:"
@@ -151,17 +153,43 @@ if (-not $Sync -and -not $DryRun -and (Test-Path $HookMerger)) {
   }
 }
 
+# ── offer to merge BSVA MCP servers into real mcp.json ────────────
+$McpMerger = Join-Path $RepoDir 'tutorial\install-mcps.py'
+if (-not $Sync -and -not $DryRun -and (Test-Path $McpMerger)) {
+  Log ""
+  Log "→ wire BSVA's MCP servers into $ClaudeDir\mcp.json?"
+  Log "  Adds Nestr, simple-mcp, WhatsOnChain, and BSV Academy as servers Claude can call."
+  Log "  Your mcp.json will be backed up. Any custom servers you already have are preserved."
+  Log "  You'll still need to drop your Nestr API key in afterwards — we'll tell you exactly where."
+  $mcpChoice = Read-Host "Merge the MCP servers now? [Y/n]"
+  if ($mcpChoice -match '^(n|no)$') {
+    Log "  skipped. merge later with:  python3 $McpMerger"
+  } else {
+    if ($Py) {
+      & $Py $McpMerger
+      if ($LASTEXITCODE -ne 0) { Log "  ⚠ MCP merge failed; re-run manually." }
+    } else {
+      Log "  ⚠ python3 not found; re-run after installing:"
+      Log "    python3 $McpMerger"
+    }
+  }
+}
+
 Log ""
 Log "✅ done."
 Log "   backups (if any): $BackupDir"
 Log ""
 Log "Next steps:"
-Log "  1. Start Claude  ->  tutorial + marketplace will open on your first session"
-Log "  2. Or open them right now:"
-Log "     $RepoDir\tutorial\start.ps1              # tutorial"
-Log "     $RepoDir\tutorial\start.ps1 marketplace  # marketplace"
-Log "  3. Read guides/for-humans/07-BEFORE-YOU-PASTE.md"
-Log "  4. Merge $ClaudeDir\mcp.bsva-template.json into your MCP setup"
+Log "  1. Fill in your Nestr API key in $ClaudeDir\mcp.json"
+Log "     (if you merged MCPs above, the merger told you exactly which lines)"
+Log ""
+Log "  2. Start Claude — tutorial + marketplace will open automatically on your"
+Log "     first session. Or open them right now:"
+Log "       $RepoDir\tutorial\start.ps1              # tutorial"
+Log "       $RepoDir\tutorial\start.ps1 marketplace  # marketplace"
+Log ""
+Log "  3. Must-read before your first real work session:"
+Log "       $RepoDir\guides\for-humans\07-BEFORE-YOU-PASTE.md"
 Log ""
 
 # ── offer to open the tour + marketplace right now too ───────────
