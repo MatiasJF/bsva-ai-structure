@@ -63,11 +63,16 @@ log "→ installing global MCP configs (~/.claude/mcp.json)"
 log "  NOTE: review ~/.claude/mcp.json after install; add your own credentials where needed"
 do_cmd "cp '$REPO_DIR/global/mcps/mcp.template.json' '$CLAUDE_DIR/mcp.bsva-template.json'"
 
-# ── settings template ───────────────────────────────────────────────
+# ── settings template (with repo path substituted) ─────────────────
 log ""
 log "→ writing settings template to ~/.claude/settings.bsva-template.json"
-do_cmd "cp '$REPO_DIR/global/settings.template.json' '$CLAUDE_DIR/settings.bsva-template.json'"
-log "  merge the template into your ~/.claude/settings.json by hand (or with jq)"
+log "  (substitutes {{REPO_DIR}} with actual repo path)"
+if [[ $DRY_RUN -eq 1 ]]; then
+  log "DRY-RUN: sed s|{{REPO_DIR}}|$REPO_DIR|g → $CLAUDE_DIR/settings.bsva-template.json"
+else
+  sed "s|{{REPO_DIR}}|$REPO_DIR|g" "$REPO_DIR/global/settings.template.json" \
+    > "$CLAUDE_DIR/settings.bsva-template.json"
+fi
 
 # ── base CLAUDE.md ──────────────────────────────────────────────────
 log ""
@@ -102,29 +107,54 @@ if [[ $SYNC_ONLY -eq 0 ]]; then
   fi
 fi
 
+# ── offer to wire the SessionStart hook into real settings.json ────
+if [[ $SYNC_ONLY -eq 0 && $DRY_RUN -eq 0 && -f "$REPO_DIR/tutorial/install-hooks.py" ]]; then
+  log ""
+  log "→ wire SessionStart hook into ~/.claude/settings.json?"
+  log "  This makes the tutorial + marketplace open automatically on your"
+  log "  FIRST Claude session after install (once only — gated by a flag file)."
+  log "  Your settings.json will be backed up before any change."
+  read -r -p "Merge the hook now? [Y/n] " hook_choice
+  case "${hook_choice:-Y}" in
+    n|N|no|No|NO)
+      log "  skipped. merge later with:  python3 $REPO_DIR/tutorial/install-hooks.py"
+      ;;
+    *)
+      if command -v python3 &>/dev/null; then
+        python3 "$REPO_DIR/tutorial/install-hooks.py" || log "  ⚠ hook merge failed; re-run manually."
+      else
+        log "  ⚠ python3 not found; re-run after installing:"
+        log "    python3 $REPO_DIR/tutorial/install-hooks.py"
+      fi
+      # Reset the welcome flag so it fires on the next Claude session
+      rm -f "$HOME/.claude/.bsva-welcome-shown" 2>/dev/null || true
+      ;;
+  esac
+fi
+
 log ""
 log "✅ done."
 log "   backups (if any): $BACKUP_DIR"
 log ""
 log "Next steps:"
-log "  1. open the guided tour:   $REPO_DIR/tutorial/start.sh"
-log "  2. read guides/for-humans/07-BEFORE-YOU-PASTE.md"
-log "  3. merge ~/.claude/mcp.bsva-template.json into your MCP setup"
-log "  4. when starting a new project, run: bsva-link  (see departments/<your-dept>/guides/)"
+log "  1. Start Claude  →  tutorial + marketplace will open automatically on the first session"
+log "  2. Or open them right now:"
+log "     $REPO_DIR/tutorial/start.sh              # tutorial"
+log "     $REPO_DIR/tutorial/start.sh marketplace  # marketplace"
+log "  3. Read guides/for-humans/07-BEFORE-YOU-PASTE.md"
+log "  4. Merge ~/.claude/mcp.bsva-template.json into your MCP setup"
 log ""
 
-# ── offer to launch the guided tour on first install ──────────────
+# ── offer to launch the tour right now too (belt-and-braces) ──────
 if [[ $SYNC_ONLY -eq 0 && $DRY_RUN -eq 0 && -f "$REPO_DIR/tutorial/start.sh" ]]; then
-  log "The guided tour is an interactive HTML walkthrough of this structure."
-  log "It takes about 10 minutes. Strongly recommended for first-time setup."
-  read -r -p "Launch it now? [Y/n] " launch_choice
+  read -r -p "Open the tutorial + marketplace now (in addition to next-session hook)? [Y/n] " launch_choice
   case "${launch_choice:-Y}" in
     n|N|no|No|NO)
-      log "Skipped. Re-run anytime: $REPO_DIR/tutorial/start.sh"
+      log "Skipped. They'll open on your next Claude session."
       ;;
     *)
-      log "Launching tutorial…"
-      exec "$REPO_DIR/tutorial/start.sh"
+      log "Launching…"
+      bash "$REPO_DIR/tutorial/welcome.sh" --force
       ;;
   esac
 fi

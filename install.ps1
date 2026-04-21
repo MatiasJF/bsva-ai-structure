@@ -54,10 +54,15 @@ Log ""
 Log "→ installing global MCP template"
 Do-Cmd { Copy-Item "$RepoDir\global\mcps\mcp.template.json" "$ClaudeDir\mcp.bsva-template.json" -Force } "mcp template"
 
-# ── settings template ─────────────────────────────────────────────
+# ── settings template (with repo path substituted) ────────────────
 Log ""
-Log "→ writing settings template"
-Do-Cmd { Copy-Item "$RepoDir\global\settings.template.json" "$ClaudeDir\settings.bsva-template.json" -Force } "settings template"
+Log "→ writing settings template (substitutes {{REPO_DIR}})"
+$settingsSrc = "$RepoDir\global\settings.template.json"
+$settingsDst = "$ClaudeDir\settings.bsva-template.json"
+Do-Cmd {
+  (Get-Content $settingsSrc -Raw) -replace '\{\{REPO_DIR\}\}', ($RepoDir -replace '\\', '/') |
+    Set-Content -Path $settingsDst -Encoding UTF8
+} "settings template (substituted)"
 
 # ── base CLAUDE.md ────────────────────────────────────────────────
 Log ""
@@ -91,26 +96,55 @@ if (-not $Sync) {
   }
 }
 
+# ── offer to wire the SessionStart hook into real settings.json ────
+$HookMerger = Join-Path $RepoDir 'tutorial\install-hooks.py'
+if (-not $Sync -and -not $DryRun -and (Test-Path $HookMerger)) {
+  Log ""
+  Log "→ wire SessionStart hook into $ClaudeDir\settings.json?"
+  Log "  This makes the tutorial + marketplace open automatically on your"
+  Log "  FIRST Claude session after install (once only — gated by a flag file)."
+  Log "  Your settings.json will be backed up before any change."
+  $hookChoice = Read-Host "Merge the hook now? [Y/n]"
+  if ($hookChoice -match '^(n|no)$') {
+    Log "  skipped. merge later with:  python3 $HookMerger"
+  } else {
+    $py = $null
+    foreach ($c in @('python3','python','py')) {
+      if (Get-Command $c -ErrorAction SilentlyContinue) { $py = $c; break }
+    }
+    if ($py) {
+      & $py $HookMerger
+      if ($LASTEXITCODE -ne 0) { Log "  ⚠ hook merge failed; re-run manually." }
+    } else {
+      Log "  ⚠ python3 not found; re-run after installing:"
+      Log "    python3 $HookMerger"
+    }
+    $flag = Join-Path $HOME ".claude\.bsva-welcome-shown"
+    if (Test-Path $flag) { Remove-Item $flag -Force }
+  }
+}
+
 Log ""
 Log "✅ done."
 Log "   backups (if any): $BackupDir"
 Log ""
 Log "Next steps:"
-Log "  1. open the guided tour:   $RepoDir\tutorial\start.ps1"
-Log "  2. read guides/for-humans/07-BEFORE-YOU-PASTE.md"
-Log "  3. merge $ClaudeDir\mcp.bsva-template.json into your MCP setup"
+Log "  1. Start Claude  ->  tutorial + marketplace will open on your first session"
+Log "  2. Or open them right now:"
+Log "     $RepoDir\tutorial\start.ps1              # tutorial"
+Log "     $RepoDir\tutorial\start.ps1 marketplace  # marketplace"
+Log "  3. Read guides/for-humans/07-BEFORE-YOU-PASTE.md"
+Log "  4. Merge $ClaudeDir\mcp.bsva-template.json into your MCP setup"
 Log ""
 
-# ── offer to launch the guided tour on first install ──────────────
-$TourLauncher = Join-Path $RepoDir 'tutorial\start.ps1'
-if (-not $Sync -and -not $DryRun -and (Test-Path $TourLauncher)) {
-  Log "The guided tour is an interactive HTML walkthrough of this structure."
-  Log "It takes about 10 minutes. Strongly recommended for first-time setup."
-  $launch = Read-Host "Launch it now? [Y/n]"
+# ── offer to open the tour + marketplace right now too ───────────
+$WelcomeLauncher = Join-Path $RepoDir 'tutorial\welcome.ps1'
+if (-not $Sync -and -not $DryRun -and (Test-Path $WelcomeLauncher)) {
+  $launch = Read-Host "Open the tutorial + marketplace now (in addition to next-session hook)? [Y/n]"
   if ($launch -match '^(n|no)$') {
-    Log "Skipped. Re-run anytime: $TourLauncher"
+    Log "Skipped. They'll open on your next Claude session."
   } else {
-    Log "Launching tutorial..."
-    & $TourLauncher
+    Log "Launching..."
+    & $WelcomeLauncher -Force
   }
 }

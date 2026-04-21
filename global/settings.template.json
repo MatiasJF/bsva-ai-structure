@@ -35,12 +35,20 @@
   },
 
   "env": {
-    "BSVA_REPO": "~/bsva-ai-structure",
+    "BSVA_REPO": "{{REPO_DIR}}",
     "BSVA_CLASSIFICATION_DEFAULT": "Internal"
   },
 
   "hooks": {
-    "_comment": "Example hooks. Uncomment once you know what you want. See guides/for-humans/04-terminal-cli-efficiency.md.",
+    "_comment": "The SessionStart hook opens the BSVA tour + marketplace ONCE on first Claude launch, then never again (gated by a flag file). Remove this block if you want to opt out. Other hook slots are empty — fill them per workflow needs.",
+    "SessionStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          { "type": "command", "command": "bash {{REPO_DIR}}/tutorial/welcome.sh" }
+        ]
+      }
+    ],
     "UserPromptSubmit": [],
     "PreToolUse": [],
     "PostToolUse": [],

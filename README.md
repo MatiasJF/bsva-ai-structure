@@ -28,15 +28,17 @@ departments/    Per-department skills, templates, MCPs, guides
 
 **Every BSVA person.** Not just engineers. The guides are written for humans first — Claude is a capable assistant, not a magic box, and using it well requires judgement from you.
 
-**Start with the guided tour** (10 minutes, interactive):
+**After you run `./install.sh`**, the tutorial + marketplace open automatically on your **first Claude session** — wired via a one-shot `SessionStart` hook.
+
+To open them manually any time:
 
 ```bash
-cd ~/bsva-ai-structure/tutorial
-./start.sh       # macOS / Linux
-./start.ps1      # Windows PowerShell
+cd ~/bsva-ai-structure
+./tutorial/start.sh              # tutorial (10-min guided tour)
+./tutorial/start.sh marketplace  # marketplace (browseable catalog of 150+ items)
 ```
 
-The installer offers to launch the tour automatically at the end.
+In a Claude session you can also just ask: *"open the tutorial"* or *"show the marketplace"* — the `open-tutorial` / `open-marketplace` skills run the launcher for you.
 
 If you prefer to read:
 
