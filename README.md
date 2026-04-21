@@ -4,6 +4,10 @@ The canonical BSVA structure for using Claude (and other AI assistants) cohesive
 
 This repo gives every BSVA person the same starting point: shared skills, MCPs, security practices, and department-specific templates. It is **both a toolkit and a training program**.
 
+> [!TIP]
+> **New here?** Start with the [**Quickstart →**](QUICKSTART.md) (5 minutes, visual, any OS).
+> The rest of this README is the full reference.
+
 ---
 
 ## What lives here
