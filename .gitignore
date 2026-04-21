@@ -31,3 +31,6 @@ guides/visuals/exports/*.svg
 # logs / tmp
 *.log
 .tmp/
+
+# marketplace: data.json is regenerated on every launch via start.sh
+marketplace/data.json

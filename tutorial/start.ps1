@@ -1,24 +1,32 @@
-# BSVA AI Guided Tour — launcher (Windows PowerShell)
+# BSVA AI — local browser launcher (Windows PowerShell)
 #
-# Starts a tiny local HTTP server in this folder and opens the tutorial
-# in your default browser. Partial-based HTML requires a server — the
-# browser blocks fetch() from file:// for security.
+# Opens the guided tour OR the marketplace in your default browser.
+# Runs a small local HTTP server at the repo root.
 #
 # Usage:
-#   .\start.ps1                default port 8765
-#   .\start.ps1 -Port 9000     use port 9000
-#   .\start.ps1 -NoOpen        start server, don't auto-open browser
+#   .\start.ps1                     open the tour (default)
+#   .\start.ps1 marketplace         open the marketplace
+#   .\start.ps1 -Port 9000
+#   .\start.ps1 -NoOpen
+#   .\start.ps1 -NoRegen            skip the marketplace scanner
 
 param(
+  [string]$Target = 'tour',
   [int]$Port = 8765,
-  [switch]$NoOpen
+  [switch]$NoOpen,
+  [switch]$NoRegen
 )
 
 $ErrorActionPreference = 'Stop'
 $TutorialDir = Split-Path -Parent $PSCommandPath
-# Serve from the repo root so ../departments/... links in partials resolve
 $RepoDir = Split-Path -Parent $TutorialDir
-$Url = "http://localhost:$Port/tutorial/index.html"
+
+if ($Target -eq 'marketplace') {
+  $Url = "http://localhost:$Port/marketplace/index.html"
+} else {
+  $Target = 'tour'
+  $Url = "http://localhost:$Port/tutorial/index.html"
+}
 
 function Find-Python {
   foreach ($cmd in @('python3', 'python', 'py')) {
@@ -35,21 +43,27 @@ Python is not installed, which is what this launcher uses to serve files.
 
 Options:
   1. Install Python (https://python.org) and re-run.
-  2. Use any local HTTP server:
-       - Node:  npx serve .
+  2. Use any local HTTP server from the repo root:
+       npx serve .
      Then open: $Url
-  3. Or open the plain text guides directly from:
-     $(Split-Path $TutorialDir -Parent)\guides\for-humans\
 "@
   exit 1
 }
 
-Write-Host "BSVA AI Guided Tour"
+# Regenerate the marketplace index (fresh every launch)
+$ScannerPath = Join-Path $RepoDir 'marketplace\generate_index.py'
+if (-not $NoRegen -and (Test-Path $ScannerPath)) {
+  & $Py $ScannerPath
+  if ($LASTEXITCODE -ne 0) { Write-Host "Warning: marketplace scanner failed (continuing)." }
+}
+
+Write-Host ""
+Write-Host "BSVA AI — $Target"
 Write-Host "  serving: $RepoDir"
-Write-Host "  tour url: $Url"
+Write-Host "  url:     $Url"
 Write-Host "  python:  $Py"
 Write-Host ""
-Write-Host "Opening in your browser. Press Ctrl+C to stop the server."
+Write-Host "Press Ctrl+C to stop the server."
 Write-Host ""
 
 if (-not $NoOpen) {

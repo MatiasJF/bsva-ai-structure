@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BSVA AI — Marketplace</title>
+  <meta name="color-scheme" content="dark light">
+  <meta name="description" content="Browse every skill, MCP, template, and workflow doc in the BSVA AI structure.">
+  <!-- Reuse the tutorial's design tokens -->
+  <link rel="stylesheet" href="../tutorial/styles.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Topbar -->
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark" aria-hidden="true">B</div>
+      <div>
+        <div class="brand-title">BSVA AI</div>
+        <div class="brand-sub">Marketplace</div>
+      </div>
+    </div>
+
+    <div class="search-wrap">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      <input id="search" type="search" placeholder="Search skills, MCPs, templates, workflow docs…" autocomplete="off">
+      <kbd class="kbd-hint"><span>/</span></kbd>
+    </div>
+
+    <div class="topbar-actions">
+      <a href="../tutorial/" class="btn btn-ghost btn-small" title="Open guided tour">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
+        Tour
+      </a>
+      <button class="icon-btn" id="theme-toggle" title="Toggle theme" aria-label="Toggle theme">
+        <svg id="icon-moon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+        <svg id="icon-sun" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+          <circle cx="12" cy="12" r="4"/>
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Filters -->
+  <section class="filters">
+    <div class="filter-row">
+      <span class="filter-label">Scope</span>
+      <div class="filter-chips" id="scope-filters"></div>
+    </div>
+    <div class="filter-row">
+      <span class="filter-label">Type</span>
+      <div class="filter-chips" id="type-filters"></div>
+    </div>
+  </section>
+
+  <!-- Main: card grid -->
+  <main class="market">
+    <div class="market-meta" id="meta">Loading…</div>
+    <div class="card-grid-mp" id="grid"></div>
+    <div class="empty" id="empty" hidden>
+      <h2>No matches</h2>
+      <p>Try clearing the search or picking a different scope.</p>
+    </div>
+  </main>
+
+  <!-- Item detail drawer -->
+  <aside class="drawer" id="drawer" aria-hidden="true">
+    <div class="drawer-backdrop" id="drawer-backdrop"></div>
+    <div class="drawer-panel" role="dialog" aria-labelledby="drawer-title" aria-modal="true">
+      <header class="drawer-head">
+        <div>
+          <div class="drawer-chips" id="drawer-chips"></div>
+          <h2 id="drawer-title"></h2>
+          <div class="drawer-meta" id="drawer-meta"></div>
+        </div>
+        <button class="icon-btn" id="drawer-close" title="Close" aria-label="Close">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+        </button>
+      </header>
+      <div class="drawer-body" id="drawer-body"></div>
+      <footer class="drawer-foot" id="drawer-foot"></footer>
+    </div>
+  </aside>
+
+  <script src="scripts.js"></script>
+</body>
+</html>

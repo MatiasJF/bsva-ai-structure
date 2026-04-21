@@ -1,26 +1,43 @@
 #!/usr/bin/env bash
-# BSVA AI Guided Tour — launcher (macOS / Linux)
+# BSVA AI — local browser launcher (macOS / Linux)
 #
-# Starts a tiny local HTTP server in this folder and opens the tutorial
-# in your default browser. Partial-based HTML requires a server — the
-# browser blocks fetch() from file:// for security.
+# Opens the guided tour OR the marketplace in your default browser.
+# Runs a small local HTTP server at the repo root (partials require a
+# server — browsers block fetch() from file://).
 #
 # Usage:
-#   ./start.sh            default port 8765; silent unless error
-#   ./start.sh 9000       use port 9000 instead
-#   ./start.sh --no-open  start server but don't auto-open browser
+#   ./start.sh                        open the tour (default)
+#   ./start.sh marketplace            open the marketplace
+#   ./start.sh tour 9000              tour on port 9000
+#   ./start.sh marketplace 9000       marketplace on port 9000
+#   ./start.sh --no-open              don't auto-open the browser
+#   ./start.sh --no-regen             skip the marketplace scanner
 
 set -u
 
-PORT="${1:-8765}"
+TARGET="tour"
+PORT="8765"
 NO_OPEN=0
-if [[ "${1:-}" == "--no-open" ]]; then NO_OPEN=1; PORT=8765; fi
-if [[ "${2:-}" == "--no-open" ]]; then NO_OPEN=1; fi
+REGEN=1
+
+for arg in "$@"; do
+  case "$arg" in
+    tour|marketplace) TARGET="$arg" ;;
+    --no-open) NO_OPEN=1 ;;
+    --no-regen) REGEN=0 ;;
+    [0-9]*) PORT="$arg" ;;
+    -h|--help) sed -n '1,20p' "$0"; exit 0 ;;
+  esac
+done
 
 TUTORIAL_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-# Serve from the repo root so links like ../departments/... in partials resolve
 REPO_DIR="$(cd "$TUTORIAL_DIR/.." && pwd)"
-URL="http://localhost:${PORT}/tutorial/index.html"
+
+if [[ "$TARGET" == "marketplace" ]]; then
+  URL="http://localhost:${PORT}/marketplace/index.html"
+else
+  URL="http://localhost:${PORT}/tutorial/index.html"
+fi
 
 log() { printf '%s\n' "$*"; }
 
@@ -32,7 +49,6 @@ pick_python() {
 
 open_url() {
   if [[ $NO_OPEN -eq 1 ]]; then return; fi
-  # Try to open silently, never fail the launcher if it doesn't work
   (command -v open      &>/dev/null && open      "$URL" 2>/dev/null) ||
   (command -v xdg-open  &>/dev/null && xdg-open  "$URL" 2>/dev/null) ||
   (command -v wslview   &>/dev/null && wslview   "$URL" 2>/dev/null) || true
@@ -44,32 +60,33 @@ PY="$(pick_python)" || {
   cat <<EOF
 Python is not installed, which is what this launcher uses to serve files.
 
-You have two options:
-
-  1. Install Python (macOS: 'brew install python3'; Linux: 'apt install python3').
-     Then re-run this script.
-
-  2. Use any other local HTTP server you have. For example:
-       - Node:  npx serve .
-       - PHP:   php -S localhost:${PORT}
+Options:
+  1. Install Python and re-run.
+     macOS: brew install python3
+     Linux: apt/yum/dnf install python3
+  2. Use any other local HTTP server from this folder, e.g.:
+       npx serve .
+       php -S localhost:${PORT}
      Then open: ${URL}
-
-  3. Or open the plain text guides directly from:
-       $(dirname "$TUTORIAL_DIR")/guides/for-humans/
 
 EOF
   exit 1
 }
 
-log "BSVA AI Guided Tour"
-log "  serving: $REPO_DIR"
-log "  tour url: $URL"
-log "  python: $PY"
+# Regenerate the marketplace index (fresh every launch)
+if [[ $REGEN -eq 1 && -f "$REPO_DIR/marketplace/generate_index.py" ]]; then
+  "$PY" "$REPO_DIR/marketplace/generate_index.py" || log "⚠ marketplace scanner failed (continuing anyway)"
+fi
+
 log ""
-log "Opening in your browser. Press Ctrl+C to stop the server."
+log "BSVA AI — ${TARGET}"
+log "  serving: $REPO_DIR"
+log "  url:     $URL"
+log "  python:  $PY"
+log ""
+log "Press Ctrl+C to stop the server."
 log ""
 
 open_url &
 
-# Run the server in the foreground so Ctrl+C works naturally
 exec "$PY" -m http.server "$PORT" --bind 127.0.0.1
