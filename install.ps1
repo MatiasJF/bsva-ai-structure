@@ -12,7 +12,8 @@
 
 param(
   [switch]$DryRun,
-  [switch]$Sync
+  [switch]$Sync,
+  [switch]$SkipPreflight
 )
 
 $ErrorActionPreference = 'Stop'
@@ -23,6 +24,32 @@ $Stamp     = (Get-Date -Format 'yyyyMMdd-HHmmss')
 $BackupDir = Join-Path $ClaudeDir ".bsva-backup\$Stamp"
 
 function Log($msg) { Write-Host $msg }
+
+# ── preflight: git + python3 ──────────────────────────────────────
+if (-not $SkipPreflight) {
+  $missing = @()
+  if (-not (Get-Command 'git' -ErrorAction SilentlyContinue)) { $missing += 'git' }
+  $pyFound = $false
+  foreach ($c in @('python3','python','py')) {
+    if (Get-Command $c -ErrorAction SilentlyContinue) { $pyFound = $true; break }
+  }
+  if (-not $pyFound) { $missing += 'python3' }
+  if ($missing.Count -gt 0) {
+    Write-Host ""
+    Write-Host "⚠ Missing required tools: $($missing -join ', ')" -ForegroundColor Yellow
+    Write-Host ""
+    Write-Host "  Run the bootstrap first — it detects winget / choco and"
+    Write-Host "  installs the missing pieces for you:"
+    Write-Host ""
+    Write-Host "    .\bootstrap.ps1"
+    Write-Host ""
+    Write-Host "  Then re-run .\install.ps1."
+    Write-Host ""
+    Write-Host "  (Advanced: bypass with .\install.ps1 -SkipPreflight)"
+    Write-Host ""
+    exit 1
+  }
+}
 function Do-Cmd($scriptblock, $label) {
   if ($DryRun) { Log "DRY-RUN: $label" } else { & $scriptblock }
 }

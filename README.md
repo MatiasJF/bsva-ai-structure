@@ -50,26 +50,54 @@ If you prefer to read:
 
 ---
 
+## Requirements
+
+The bare minimum to run the installer + tutorial + marketplace:
+
+| Tool | Why it's needed | How to get it |
+|---|---|---|
+| **git** | to clone + update the repo | macOS: Xcode CLT · Linux: `apt/dnf install git` · Windows: winget |
+| **Python 3.7+** | installer, marketplace scanner, local HTTP server, hook merger | macOS: `brew install python3` · Linux: system package · Windows: winget |
+| **A browser** | viewing the tutorial / marketplace | you already have one |
+| **Claude Code** | the point of all this | https://claude.com/claude-code |
+
+Node.js is **not** required for the tutorial or marketplace — it's only needed if you're working on DevRel's SDK example templates.
+
+Don't have Python or git? Run `./bootstrap.sh` (or `.\bootstrap.ps1` on Windows) first. It detects your OS, finds the right package manager (brew / apt / dnf / pacman / winget / choco), and asks before installing each missing tool.
+
+---
+
 ## Install (humans)
 
 ```bash
-# 1. Clone somewhere on your machine
+# 1. Clone
 git clone git@github.com:MatiasJF/bsva-ai-structure.git ~/bsva-ai-structure
 cd ~/bsva-ai-structure
 
-# 2. Run the installer. It will:
-#    - copy global/ skills and MCPs into ~/.claude/
-#    - ask which department you belong to
-#    - link department CLAUDE.md into your project when you run `bsva-link`
-./install.sh          # macOS / Linux
+# 2. Prerequisites (once per machine)
+./bootstrap.sh           # macOS / Linux
 # or
-./install.ps1         # Windows PowerShell
+.\bootstrap.ps1          # Windows
 
-# 3. Later, to pull updates
+# 3. Installer — copies global skills + MCPs to ~/.claude/, picks your
+#    department, and (optionally) wires the SessionStart hook that
+#    opens the tutorial + marketplace on your first Claude session.
+./install.sh             # macOS / Linux
+# or
+.\install.ps1            # Windows
+
+# 4. Start Claude — tutorial + marketplace open automatically (once).
+#    Or open them on-demand any time:
+./tutorial/start.sh              # tutorial
+./tutorial/start.sh marketplace  # marketplace
+
+# Pull updates later:
 cd ~/bsva-ai-structure && git pull && ./install.sh --sync
 ```
 
-The installer is **idempotent** — safe to re-run. It will not overwrite your personal skills or settings.
+The installer is **idempotent** — safe to re-run. It backs up anything it replaces.
+
+If you already have git + Python and want to skip the bootstrap check, run `./install.sh --skip-preflight`.
 
 ---
 

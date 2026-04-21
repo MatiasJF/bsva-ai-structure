@@ -18,17 +18,43 @@ CLAUDE_DIR="${HOME}/.claude"
 BACKUP_DIR="${CLAUDE_DIR}/.bsva-backup/$(date +%Y%m%d-%H%M%S)"
 DRY_RUN=0
 SYNC_ONLY=0
+SKIP_PREFLIGHT=0
 
 # ── flag parsing ────────────────────────────────────────────────────
 for arg in "$@"; do
   case "$arg" in
-    --dry-run) DRY_RUN=1 ;;
-    --sync)    SYNC_ONLY=1 ;;
+    --dry-run)         DRY_RUN=1 ;;
+    --sync)            SYNC_ONLY=1 ;;
+    --skip-preflight)  SKIP_PREFLIGHT=1 ;;
     -h|--help)
       sed -n '1,20p' "$0"; exit 0 ;;
     *) echo "unknown flag: $arg" >&2; exit 1 ;;
   esac
 done
+
+# ── preflight: check git + python3 are installed ────────────────────
+if [[ $SKIP_PREFLIGHT -eq 0 ]]; then
+  MISSING_TOOLS=()
+  command -v git >/dev/null 2>&1 || MISSING_TOOLS+=(git)
+  if ! command -v python3 >/dev/null 2>&1 && ! command -v python >/dev/null 2>&1; then
+    MISSING_TOOLS+=(python3)
+  fi
+  if [[ ${#MISSING_TOOLS[@]} -gt 0 ]]; then
+    echo ""
+    echo "⚠ Missing required tools: ${MISSING_TOOLS[*]}"
+    echo ""
+    echo "  Run the bootstrap first — it detects your OS and package"
+    echo "  manager and installs the missing pieces for you:"
+    echo ""
+    echo "    ./bootstrap.sh"
+    echo ""
+    echo "  Then re-run ./install.sh."
+    echo ""
+    echo "  (Advanced: bypass with ./install.sh --skip-preflight)"
+    echo ""
+    exit 1
+  fi
+fi
 
 log()    { printf '%s\n' "$*"; }
 do_cmd() { [[ $DRY_RUN -eq 1 ]] && log "DRY-RUN: $*" || eval "$*"; }
