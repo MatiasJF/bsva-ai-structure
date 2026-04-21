@@ -96,5 +96,21 @@ Log "✅ done."
 Log "   backups (if any): $BackupDir"
 Log ""
 Log "Next steps:"
-Log "  1. read guides/for-humans/07-BEFORE-YOU-PASTE.md"
-Log "  2. merge $ClaudeDir\mcp.bsva-template.json into your MCP setup"
+Log "  1. open the guided tour:   $RepoDir\tutorial\start.ps1"
+Log "  2. read guides/for-humans/07-BEFORE-YOU-PASTE.md"
+Log "  3. merge $ClaudeDir\mcp.bsva-template.json into your MCP setup"
+Log ""
+
+# ── offer to launch the guided tour on first install ──────────────
+$TourLauncher = Join-Path $RepoDir 'tutorial\start.ps1'
+if (-not $Sync -and -not $DryRun -and (Test-Path $TourLauncher)) {
+  Log "The guided tour is an interactive HTML walkthrough of this structure."
+  Log "It takes about 10 minutes. Strongly recommended for first-time setup."
+  $launch = Read-Host "Launch it now? [Y/n]"
+  if ($launch -match '^(n|no)$') {
+    Log "Skipped. Re-run anytime: $TourLauncher"
+  } else {
+    Log "Launching tutorial..."
+    & $TourLauncher
+  }
+}

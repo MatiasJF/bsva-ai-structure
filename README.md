@@ -28,12 +28,23 @@ departments/    Per-department skills, templates, MCPs, guides
 
 **Every BSVA person.** Not just engineers. The guides are written for humans first — Claude is a capable assistant, not a magic box, and using it well requires judgement from you.
 
-If you are new to Claude, start here:
+**Start with the guided tour** (10 minutes, interactive):
+
+```bash
+cd ~/bsva-ai-structure/tutorial
+./start.sh       # macOS / Linux
+./start.ps1      # Windows PowerShell
+```
+
+The installer offers to launch the tour automatically at the end.
+
+If you prefer to read:
 
 1. `guides/for-humans/01-what-is-claude-code.md`
 2. `guides/for-humans/02-first-hour-setup.md`
 3. `guides/for-humans/07-BEFORE-YOU-PASTE.md` ← **read this before your first real session**
-4. `guides/visuals/02-onboarding-flow.md`
+4. `workflow/01-the-cycle.md`
+5. `guides/visuals/02-onboarding-flow.md`
 
 ---
 

@@ -107,6 +107,24 @@ log "✅ done."
 log "   backups (if any): $BACKUP_DIR"
 log ""
 log "Next steps:"
-log "  1. read guides/for-humans/07-BEFORE-YOU-PASTE.md"
-log "  2. merge ~/.claude/mcp.bsva-template.json into your MCP setup"
-log "  3. when starting a new project, run: bsva-link  (see departments/<your-dept>/guides/)"
+log "  1. open the guided tour:   $REPO_DIR/tutorial/start.sh"
+log "  2. read guides/for-humans/07-BEFORE-YOU-PASTE.md"
+log "  3. merge ~/.claude/mcp.bsva-template.json into your MCP setup"
+log "  4. when starting a new project, run: bsva-link  (see departments/<your-dept>/guides/)"
+log ""
+
+# ── offer to launch the guided tour on first install ──────────────
+if [[ $SYNC_ONLY -eq 0 && $DRY_RUN -eq 0 && -f "$REPO_DIR/tutorial/start.sh" ]]; then
+  log "The guided tour is an interactive HTML walkthrough of this structure."
+  log "It takes about 10 minutes. Strongly recommended for first-time setup."
+  read -r -p "Launch it now? [Y/n] " launch_choice
+  case "${launch_choice:-Y}" in
+    n|N|no|No|NO)
+      log "Skipped. Re-run anytime: $REPO_DIR/tutorial/start.sh"
+      ;;
+    *)
+      log "Launching tutorial…"
+      exec "$REPO_DIR/tutorial/start.sh"
+      ;;
+  esac
+fi
