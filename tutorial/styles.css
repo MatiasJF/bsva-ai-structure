@@ -257,12 +257,20 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
 }
 .hero-illu {
   position: absolute;
-  right: 20px; bottom: 20px;
-  width: 120px; height: 120px;
-  opacity: 0.25;
+  right: 28px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 108px; height: 108px;
+  opacity: 0.18;
   pointer-events: none;
+  color: var(--accent-strong);
 }
-@media (max-width: 640px) { .hero-illu { display: none; } }
+/* Reserve space on the right so long text never runs under the illustration */
+.hero:has(.hero-illu) { padding-right: 170px; }
+@media (max-width: 760px) {
+  .hero:has(.hero-illu) { padding-right: 40px; }
+  .hero-illu { display: none; }
+}
 
 /* ── typography in content ─────────────────────────────────── */
 .content h2 {
