@@ -69,56 +69,34 @@
     return m ? m.label.replace(/s$/, '') : t;
   }
 
-  // ── small markdown renderer (headings, bold, code, lists, links) ──
+  // ── markdown renderer (marked.js if available, tiny fallback otherwise) ──
   function renderMd(src) {
     if (!src) return '';
-    // extract fenced code blocks first
-    const codes = [];
-    src = src.replace(/```[a-zA-Z]*\n([\s\S]*?)```/g, (_, code) => {
-      codes.push(code);
-      return `@@CODE${codes.length - 1}@@`;
-    });
-    let html = escapeHtml(src);
-    // headings
-    html = html
-      .replace(/^####\s*(.+)$/gm, '<h4>$1</h4>')
-      .replace(/^###\s*(.+)$/gm, '<h3>$1</h3>')
-      .replace(/^##\s*(.+)$/gm, '<h3>$1</h3>')
-      .replace(/^#\s*(.+)$/gm, '<h3>$1</h3>');
-    // blockquote
-    html = html.replace(/^&gt; ?(.+)$/gm, '<blockquote>$1</blockquote>');
-    // bold + italics
-    html = html.replace(/\*\*([^\n*]+)\*\*/g, '<strong>$1</strong>');
-    html = html.replace(/(^|\W)_([^_\n]+)_(\W|$)/g, '$1<em>$2</em>$3');
-    // inline code
-    html = html.replace(/`([^`\n]+)`/g, '<code>$1</code>');
-    // links (simple)
-    html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
-    // unordered lists
-    const lines = html.split('\n');
-    const out = [];
-    let inList = false;
-    for (const line of lines) {
-      const m = line.match(/^[-*]\s+(.+)$/);
-      if (m) {
-        if (!inList) { out.push('<ul>'); inList = true; }
-        out.push(`<li>${m[1]}</li>`);
-      } else {
-        if (inList) { out.push('</ul>'); inList = false; }
-        out.push(line);
+    if (window.marked && typeof window.marked.parse === 'function') {
+      try {
+        return window.marked.parse(src, {
+          gfm: true,
+          breaks: false,
+          headerIds: false,
+          mangle: false,
+        });
+      } catch (e) {
+        // fall through to fallback
       }
     }
-    if (inList) out.push('</ul>');
-    html = out.join('\n');
-    // paragraphs: double-newlines
-    html = html.split(/\n{2,}/).map(p => {
-      if (/^<(h[1-6]|ul|ol|blockquote|pre)/i.test(p.trim())) return p;
-      if (p.trim() === '') return '';
-      return `<p>${p.replace(/\n/g, '<br>')}</p>`;
-    }).join('\n');
-    // restore code fences
-    html = html.replace(/@@CODE(\d+)@@/g, (_, i) => `<pre><code>${escapeHtml(codes[+i])}</code></pre>`);
-    return html;
+    // Fallback (CDN blocked / offline): bare-minimum rendering so something shows.
+    const codes = [];
+    let t = src.replace(/```[a-zA-Z]*\n([\s\S]*?)```/g, (_, c) => { codes.push(c); return `@@CODE${codes.length - 1}@@`; });
+    let h = escapeHtml(t)
+      .replace(/^###\s*(.+)$/gm, '<h3>$1</h3>')
+      .replace(/^##\s*(.+)$/gm, '<h2>$1</h2>')
+      .replace(/^#\s*(.+)$/gm, '<h2>$1</h2>')
+      .replace(/\*\*([^\n*]+)\*\*/g, '<strong>$1</strong>')
+      .replace(/`([^`\n]+)`/g, '<code>$1</code>')
+      .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
+    h = h.split(/\n{2,}/).map(p => /^<(h\d|ul|ol|pre|blockquote)/i.test(p.trim()) ? p : (p.trim() ? `<p>${p.replace(/\n/g, '<br>')}</p>` : '')).join('\n');
+    h = h.replace(/@@CODE(\d+)@@/g, (_, i) => `<pre><code>${escapeHtml(codes[+i])}</code></pre>`);
+    return h;
   }
 
   // ── filters UI ──────────────────────────────────────────────
@@ -243,7 +221,7 @@
     const bodyEl = $('#drawer-body');
     bodyEl.innerHTML = '<p class="muted">Loading…</p>';
 
-    const desc = it.description ? `<p class="muted" style="border-bottom:1px solid var(--border);padding-bottom:14px;margin-bottom:14px;">${escapeHtml(it.description)}</p>` : '';
+    const desc = it.description ? `<div class="mp-desc">${escapeHtml(it.description)}</div>` : '';
 
     try {
       const res = await fetch('../' + it.path, { cache: 'no-cache' });
