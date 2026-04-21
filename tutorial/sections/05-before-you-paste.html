@@ -39,21 +39,45 @@
 
 <h2>Your 30-second pre-flight</h2>
 
-<div class="flow-tree stagger">
-  <div class="flow-node q">Is it already published or clearly public?</div>
-  <div class="flow-row">
-    <div class="flow-answer ok">✓ Yes — Public. Go.</div>
-    <div class="flow-node q">Keys · HR · legal · board · M&amp;A?</div>
-  </div>
-  <div class="flow-row">
-    <div class="flow-node q">Names · $ · NDA · unreleased?</div>
-    <div class="flow-answer stop">✕ Yes — STOP. Escalate.</div>
-  </div>
-  <div class="flow-row">
-    <div class="flow-answer care">⚠ Redact → Confidential, scoped session</div>
-    <div class="flow-answer warn">→ No — Internal. Desktop / CLI only.</div>
-  </div>
+<div class="mermaid">
+flowchart TD
+    S([I want to share this with Claude])
+    Q1{Already published<br/>or clearly public?}
+    A1[🟢 Public · Go]
+    Q2{Keys · HR · Legal<br/>Board · M&amp;A?}
+    X1[🔴 STOP · Escalate]
+    Q3{Names · $ · NDA<br/>Unreleased?}
+    A3[🟡 Internal<br/>Desktop / CLI only]
+    Q4{Can I redact<br/>enough to anonymize?}
+    A4[🟠 Confidential<br/>redact + scoped session]
+    X2[🔴 STOP · Escalate]
+
+    S --> Q1
+    Q1 -->|Yes| A1
+    Q1 -->|No| Q2
+    Q2 -->|Yes| X1
+    Q2 -->|No| Q3
+    Q3 -->|No| A3
+    Q3 -->|Yes| Q4
+    Q4 -->|Yes| A4
+    Q4 -->|No| X2
+
+    classDef ok   fill:#0f3e23,stroke:#4ade80,stroke-width:2px,color:#e6f9ec
+    classDef warn fill:#3d3010,stroke:#fbbf24,stroke-width:2px,color:#fff5d6
+    classDef care fill:#402109,stroke:#fb923c,stroke-width:2px,color:#ffe6d0
+    classDef stop fill:#401111,stroke:#ef4444,stroke-width:2px,color:#ffd6d6
+    classDef q    fill:#142544,stroke:#2d4773,stroke-width:1px,color:#f0f4fa
+    classDef s    fill:#1a2f55,stroke:#e8a935,stroke-width:2px,color:#f0f4fa
+
+    class S s
+    class Q1,Q2,Q3,Q4 q
+    class A1 ok
+    class A3 warn
+    class A4 care
+    class X1,X2 stop
 </div>
+
+<p class="center muted small">Runs in your head in 30 seconds after your first week.</p>
 
 <h2>What Claude CAN'T do (calm yourself)</h2>
 <div class="myth-grid stagger">

@@ -18,7 +18,9 @@ if [[ "${1:-}" == "--no-open" ]]; then NO_OPEN=1; PORT=8765; fi
 if [[ "${2:-}" == "--no-open" ]]; then NO_OPEN=1; fi
 
 TUTORIAL_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-URL="http://localhost:${PORT}/index.html"
+# Serve from the repo root so links like ../departments/... in partials resolve
+REPO_DIR="$(cd "$TUTORIAL_DIR/.." && pwd)"
+URL="http://localhost:${PORT}/tutorial/index.html"
 
 log() { printf '%s\n' "$*"; }
 
@@ -36,7 +38,7 @@ open_url() {
   (command -v wslview   &>/dev/null && wslview   "$URL" 2>/dev/null) || true
 }
 
-cd "$TUTORIAL_DIR" || { log "Can't cd to tutorial folder: $TUTORIAL_DIR"; exit 1; }
+cd "$REPO_DIR" || { log "Can't cd to repo folder: $REPO_DIR"; exit 1; }
 
 PY="$(pick_python)" || {
   cat <<EOF
@@ -60,8 +62,8 @@ EOF
 }
 
 log "BSVA AI Guided Tour"
-log "  folder: $TUTORIAL_DIR"
-log "  url:    $URL"
+log "  serving: $REPO_DIR"
+log "  tour url: $URL"
 log "  python: $PY"
 log ""
 log "Opening in your browser. Press Ctrl+C to stop the server."

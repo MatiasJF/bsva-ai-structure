@@ -16,7 +16,9 @@ param(
 
 $ErrorActionPreference = 'Stop'
 $TutorialDir = Split-Path -Parent $PSCommandPath
-$Url = "http://localhost:$Port/index.html"
+# Serve from the repo root so ../departments/... links in partials resolve
+$RepoDir = Split-Path -Parent $TutorialDir
+$Url = "http://localhost:$Port/tutorial/index.html"
 
 function Find-Python {
   foreach ($cmd in @('python3', 'python', 'py')) {
@@ -43,9 +45,9 @@ Options:
 }
 
 Write-Host "BSVA AI Guided Tour"
-Write-Host "  folder: $TutorialDir"
-Write-Host "  url:    $Url"
-Write-Host "  python: $Py"
+Write-Host "  serving: $RepoDir"
+Write-Host "  tour url: $Url"
+Write-Host "  python:  $Py"
 Write-Host ""
 Write-Host "Opening in your browser. Press Ctrl+C to stop the server."
 Write-Host ""
@@ -54,5 +56,5 @@ if (-not $NoOpen) {
   Start-Process $Url -ErrorAction SilentlyContinue
 }
 
-Set-Location $TutorialDir
+Set-Location $RepoDir
 & $Py -m http.server $Port --bind 127.0.0.1
