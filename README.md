@@ -75,7 +75,7 @@ Don't have Python or git? Run `./bootstrap.sh` (or `.\bootstrap.ps1` on Windows)
 
 ```bash
 # 1. Clone
-git clone git@github.com:MatiasJF/bsva-ai-structure.git ~/bsva-ai-structure
+git clone https://github.com/MatiasJF/bsva-ai-structure.git ~/bsva-ai-structure
 cd ~/bsva-ai-structure
 
 # 2. Prerequisites (once per machine)

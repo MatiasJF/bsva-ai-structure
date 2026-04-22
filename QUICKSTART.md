@@ -43,7 +43,7 @@ Pick whichever works for you — the rest of the guide is identical.
 ## Step 1 · Clone the repo
 
 ```bash
-git clone git@github.com:MatiasJF/bsva-ai-structure.git ~/bsva-ai-structure
+git clone https://github.com/MatiasJF/bsva-ai-structure.git ~/bsva-ai-structure
 cd ~/bsva-ai-structure
 ```
 
@@ -88,18 +88,18 @@ cd ~/bsva-ai-structure
 <summary><b>Windows PowerShell</b> — same idea, different path separator</summary>
 
 ```powershell
-git clone git@github.com:MatiasJF/bsva-ai-structure.git $HOME\bsva-ai-structure
+git clone https://github.com/MatiasJF/bsva-ai-structure.git $HOME\bsva-ai-structure
 cd $HOME\bsva-ai-structure
 ```
 </details>
 
 <details>
-<summary><b>No SSH key set up?</b></summary>
+<summary><b>Prefer SSH?</b></summary>
 
-Use HTTPS instead:
+If you have an SSH key linked to GitHub, you can clone over SSH instead:
 
 ```bash
-git clone https://github.com/MatiasJF/bsva-ai-structure.git ~/bsva-ai-structure
+git clone git@github.com:MatiasJF/bsva-ai-structure.git ~/bsva-ai-structure
 ```
 </details>
 
