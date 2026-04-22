@@ -38,12 +38,15 @@ Pick whichever works for you — the rest of the guide is identical.
 > [!TIP]
 > Not sure which account to use? Ask DevRel — BSVA provisions Anthropic accounts for you. Don't use a personal account for BSVA work.
 
+> [!WARNING]
+> **Don't download "Claude Desktop" from `claude.ai/download`.** That's the consumer chat app — it can't run `./install.sh` or write files natively, so the BSVA onboarding will not work with it. You specifically need **Claude Code** (CLI or the Claude Code Desktop app at [claude.com/download](https://claude.com/download)). Same brand, different product.
+
 ---
 
 ## Step 1 · Clone the repo
 
 ```bash
-git clone git@github.com:MatiasJF/bsva-ai-structure.git ~/bsva-ai-structure
+git clone https://github.com/MatiasJF/bsva-ai-structure.git ~/bsva-ai-structure
 cd ~/bsva-ai-structure
 ```
 
@@ -88,18 +91,18 @@ cd ~/bsva-ai-structure
 <summary><b>Windows PowerShell</b> — same idea, different path separator</summary>
 
 ```powershell
-git clone git@github.com:MatiasJF/bsva-ai-structure.git $HOME\bsva-ai-structure
+git clone https://github.com/MatiasJF/bsva-ai-structure.git $HOME\bsva-ai-structure
 cd $HOME\bsva-ai-structure
 ```
 </details>
 
 <details>
-<summary><b>No SSH key set up?</b></summary>
+<summary><b>Prefer SSH?</b></summary>
 
-Use HTTPS instead:
+If you have an SSH key linked to GitHub, you can clone over SSH instead:
 
 ```bash
-git clone https://github.com/MatiasJF/bsva-ai-structure.git ~/bsva-ai-structure
+git clone git@github.com:MatiasJF/bsva-ai-structure.git ~/bsva-ai-structure
 ```
 </details>
 

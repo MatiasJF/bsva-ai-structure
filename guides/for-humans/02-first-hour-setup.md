@@ -15,7 +15,9 @@ npm i -g @anthropic-ai/claude-code
 ```
 
 ### If you are non-technical
-Download the Desktop app: https://claude.com/claude-code → download for Mac / Windows.
+Download the **Claude Code** desktop app: https://claude.com/download → Mac / Windows.
+
+> ⚠️ **Don't install "Claude Desktop" from `claude.ai/download`.** That's the consumer chat app — it cannot run BSVA's installer or write files natively, so the rest of this guide will not work with it. You need **Claude Code**, which has native Read / Write / Edit / Bash tools.
 
 Log in with your **Anthropic work account** (not personal). If BSVA has not provisioned your account, ping DevRel in Nestr.
 
@@ -24,7 +26,7 @@ Log in with your **Anthropic work account** (not personal). If BSVA has not prov
 ## Step 2 — Clone and install the BSVA structure (10 min)
 
 ```bash
-git clone git@github.com:MatiasJF/bsva-ai-structure.git ~/bsva-ai-structure
+git clone https://github.com/MatiasJF/bsva-ai-structure.git ~/bsva-ai-structure
 cd ~/bsva-ai-structure
 ./install.sh       # macOS / Linux
 ./install.ps1      # Windows
@@ -38,14 +40,13 @@ The installer will:
 
 ---
 
-## Step 3 — Add your Nestr credentials (10 min)
+## Step 3 — Connect Claude to Nestr (2 min)
 
-BSVA runs on Nestr. Your Claude needs to talk to it.
+BSVA runs on Nestr. Your Claude needs to talk to it — no API key required, auth is OAuth.
 
-1. Open `~/.claude/mcp.bsva-template.json` (the installer put it there).
-2. Replace `<your-nestr-api-key>` with your key from Nestr → Settings → API.
-3. Merge the `mcpServers` block into your real MCP config (CLI: `~/.claude/mcp.json`; Desktop: Settings → MCP).
-4. Restart Claude.
+1. Merge the `mcpServers` block from `~/.claude/mcp.bsva-template.json` into your real MCP config (CLI: `~/.claude/mcp.json`; Desktop: Settings → MCP).
+2. Restart Claude.
+3. On the next session the Nestr MCP will open `https://mcp.nestr.io/` in your browser — sign in with your Nestr account to authorize. That's it.
 
 ---
 

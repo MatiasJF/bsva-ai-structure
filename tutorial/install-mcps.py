@@ -163,7 +163,8 @@ def merge(dry_run: bool = False) -> int:
         for s, k, v in all_placeholders:
             print(f"    • mcpServers.{s}.{k}  →  currently  {v}")
         print()
-        print("  Get your Nestr API key from: Nestr → Settings → API.")
+        print("  Each MCP's `_comment` in the template tells you where to get credentials.")
+        print("  Nestr: OAuth only — visit https://mcp.nestr.io on first server launch.")
         print("  Then restart Claude. The MCPs will light up on the next session.")
 
     return 0

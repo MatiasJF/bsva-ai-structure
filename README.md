@@ -65,6 +65,9 @@ The bare minimum to run the installer + tutorial + marketplace:
 | **A browser** | viewing the tutorial / marketplace | you already have one |
 | **Claude Code** | the point of all this | https://claude.com/claude-code |
 
+> [!WARNING]
+> **Claude Code ≠ Claude Desktop.** BSVA's installer needs a client with **native** file read/write/edit and shell execution. Only **Claude Code** has those (CLI, Mac/Windows desktop app, VS Code/JetBrains, web at [claude.ai/code](https://claude.ai/code)). The consumer **Claude Desktop** app at `claude.ai/download` is chat-only and cannot run `./install.sh` or write to `~/.claude/` — do not use it for BSVA onboarding. If you want a desktop UI, download **Claude Code** at [claude.com/download](https://claude.com/download).
+
 Node.js is **not** required for the tutorial or marketplace — it's only needed if you're working on DevRel's SDK example templates.
 
 Don't have Python or git? Run `./bootstrap.sh` (or `.\bootstrap.ps1` on Windows) first. It detects your OS, finds the right package manager (brew / apt / dnf / pacman / winget / choco), and asks before installing each missing tool.
@@ -75,7 +78,7 @@ Don't have Python or git? Run `./bootstrap.sh` (or `.\bootstrap.ps1` on Windows)
 
 ```bash
 # 1. Clone
-git clone git@github.com:MatiasJF/bsva-ai-structure.git ~/bsva-ai-structure
+git clone https://github.com/MatiasJF/bsva-ai-structure.git ~/bsva-ai-structure
 cd ~/bsva-ai-structure
 
 # 2. Prerequisites (once per machine)

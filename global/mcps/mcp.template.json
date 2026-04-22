@@ -3,13 +3,10 @@
 
   "mcpServers": {
     "nestr": {
-      "_comment": "Nestr — BSVA's self-organization platform (Holacracy/Sociocracy). Tensions, circles, roles.",
+      "_comment": "Nestr — BSVA's self-organization platform (Holacracy/Sociocracy). Tensions, circles, roles. Credentials via OAuth: visit https://mcp.nestr.io on first server launch to authorize. No API key required.",
       "command": "npx",
       "args": ["-y", "@nestr/mcp-server@latest"],
-      "env": {
-        "NESTR_API_KEY": "<your-nestr-api-key>",
-        "NESTR_WORKSPACE": "<your-workspace-slug>"
-      }
+      "env": {}
     },
 
     "simple-mcp": {
