@@ -38,6 +38,9 @@ Pick whichever works for you — the rest of the guide is identical.
 > [!TIP]
 > Not sure which account to use? Ask DevRel — BSVA provisions Anthropic accounts for you. Don't use a personal account for BSVA work.
 
+> [!WARNING]
+> **Don't download "Claude Desktop" from `claude.ai/download`.** That's the consumer chat app — it can't run `./install.sh` or write files natively, so the BSVA onboarding will not work with it. You specifically need **Claude Code** (CLI or the Claude Code Desktop app at [claude.com/download](https://claude.com/download)). Same brand, different product.
+
 ---
 
 ## Step 1 · Clone the repo

@@ -15,7 +15,9 @@ npm i -g @anthropic-ai/claude-code
 ```
 
 ### If you are non-technical
-Download the Desktop app: https://claude.com/claude-code → download for Mac / Windows.
+Download the **Claude Code** desktop app: https://claude.com/download → Mac / Windows.
+
+> ⚠️ **Don't install "Claude Desktop" from `claude.ai/download`.** That's the consumer chat app — it cannot run BSVA's installer or write files natively, so the rest of this guide will not work with it. You need **Claude Code**, which has native Read / Write / Edit / Bash tools.
 
 Log in with your **Anthropic work account** (not personal). If BSVA has not provisioned your account, ping DevRel in Nestr.
 
